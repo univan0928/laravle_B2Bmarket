@@ -1,0 +1,72 @@
+.user-info-card {
+  padding: 15px;
+  border: 1px solid #15171c; 
+  border-radius: 5px;
+}
+
+.user-info-card button {
+  width: 100%;
+  color: #FFF;
+}
+
+.content-part p {
+  font-size: 16px;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+}
+
+.content-part {
+  min-height: 140px;
+}
+
+.card-top-row {
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.custom-cancel-btn {
+  background-color: white!important;
+  color: black!important;
+  border: 1px solid black!important;
+}
+
+.custom-reset-btn {
+  background-color: white!important;
+  color: black!important;
+  padding-left: 0px!important;
+}
+
+.phone-verify-title {
+  font-size: 16px;
+}
+
+.custom-phone-select {
+  display: inline-block;
+  width: 15%;
+}
+
+.custom-phone-part input {
+  width: 65%;
+  display: inline-block;
+  margin-left: -7px;
+  border-left: none;
+}
+
+.checkbox-part span {
+  font-size: 18px;
+}
+
+.last-des {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+  .card-top-row {
+    margin-top: 30px;
+  }
+  .custom-phone-select {
+    width: 30%;
+  }
+  .custom-phone-part input {
+    width: 68%;
+  }
+}

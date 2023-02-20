@@ -1,0 +1,118 @@
+.ps-block--icon-box i {
+  color: #ed1c24;
+}
+
+
+
+.lead .topic {
+  color: #ed1c24;
+}
+
+.lead hr {
+    border: 2px solid #ed1c24;
+    background: #ed1c24;
+    opacity: 0.5;
+} 
+
+
+#about-us > div.lead > div > div > div.col-xl-4.col-md-4.col-m-12.col-s-12 > div.hubspot > button {
+  background-color: #ed1c24;
+}
+
+
+.ps-btn, button.ps-btn {
+  color: #FFF;
+}
+
+/*dark-theme*/
+
+.menu > li > a:hover {
+  color: white;
+}
+
+.menu--dropdown > li:hover {
+  background-color: #ed1c24;
+}
+
+.menu--dropdown > li:hover > a {
+  color: white;
+}
+
+.header__extra svg {
+  margin-top: 6px;
+}
+
+.menu--product-categories .menu__toggle span {
+  color: #FFF;
+}
+
+.menu--product-categories .menu__toggle:before {
+  color: #FFF;
+}
+
+.icon-menu:before {
+  color: #fff;
+}
+
+.menu > li > a {
+  color: #fff;
+}
+
+.header .header__actions {
+  color: #fff;
+}
+
+.header__extra svg {
+    color: #fff;
+}
+
+.navigation__extra > li a {
+  color: #fff;
+}
+
+.navigation__extra > li:after {
+  background-color: #fff;
+}
+
+.header__extra svg {
+  fill: white;
+}
+
+.ps-form--quick-search button {
+ color: #FFF;
+}
+
+.ps-form--quick-search button {
+  background-color: #ed1c24;
+}
+
+.ps-btn, button.ps-btn {
+  color: #FFF;
+}
+
+.ps-block--site-features .ps-block__left i {
+  color: #ed1c24;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+.navigation__extra > li a {
+  color: #000;
+}
+.ps-banner--market-1 h3 {
+  color: #ed1c24;
+}
+
+.ps-banner--market-1 p {
+  color: #000;
+  font-weight: 700;
+}
+.menu--product-categories .menu__toggle span {
+  color: #000;
+}
+.icon-menu:before {
+  color: inherit;
+}
+}

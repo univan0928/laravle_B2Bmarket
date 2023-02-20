@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="71px" height="80px" viewBox="0 0 71 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>homepagina_v0.2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 -1.53210777e-14 70 -1.53210777e-14 70 80 0 80"></polygon>
+        <rect id="path-3" x="0" y="0" width="23.3909774" height="30.008" rx="1.23809524"></rect>
+        <filter x="-36.3%" y="-21.7%" width="172.7%" height="156.7%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-5" x="0" y="0.222949886" width="25.2777778" height="3.87243736" rx="0.742857143"></rect>
+        <filter x="-27.7%" y="-129.1%" width="155.4%" height="461.5%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Bundles_apps" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="homepagina_v0.2">
+            <g id="Screen">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#F3F3F6" xlink:href="#path-1"></use>
+                <g id="Group-4" mask="url(#mask-2)">
+                    <g transform="translate(5.377467, 5.728929)">
+                        <g id="Listing" transform="translate(0.169525, 0.160732)">
+                            <path d="M1.14094188,0.25 C0.726728319,0.25 0.390941882,0.585786438 0.390941882,1 L0.390941882,3.42396313 C0.390941882,3.8381767 0.726728319,4.17396313 1.14094188,4.17396313 L57.7198893,4.17396313 C58.1341028,4.17396313 58.4698893,3.8381767 58.4698893,3.42396313 L58.4698893,1 C58.4698893,0.585786438 58.1341028,0.25 57.7198893,0.25 L1.14094188,0.25 Z" id="Rectangle-2-Copy-2" stroke="#E6E4E1" stroke-width="0.5" fill="#FFFFFF"></path>
+                        </g>
+                        <g id="Group-12" transform="translate(0.273575, 14.210638)">
+                            <g id="Listing-Copy" transform="translate(20.052083, 0.000000)">
+                                <g id="Group">
+                                    <rect id="Rectangle-2-Copy-2" fill="#FFFFFF" x="0" y="0" width="18.5178571" height="24.2" rx="1"></rect>
+                                    <rect id="Mask" fill="#B4B8BE" x="0.931486486" y="0.99423884" width="16.3392857" height="16.5" rx="0.6"></rect>
+                                    <polygon id="Rectangle-5" fill="#B4B8BE" points="1.08928571 18.7 15.25 18.7 15.25 19.8 1.08928571 19.8"></polygon>
+                                    <polygon id="Rectangle-5-Copy" fill="#E6E4E1" points="1.08928571 20.9 13.0714286 20.9 13.0714286 22 1.08928571 22"></polygon>
+                                </g>
+                            </g>
+                            <g id="Listing-Copy-4">
+                                <g id="Group">
+                                    <rect id="Rectangle-2-Copy-2" fill="#FFFFFF" x="0" y="0" width="18.5178571" height="24.2" rx="1"></rect>
+                                    <rect id="Mask" fill="#B4B8BE" x="0.931486486" y="0.99423884" width="16.3392857" height="16.5" rx="0.6"></rect>
+                                    <polygon id="Rectangle-5" fill="#B4B8BE" points="1.08928571 18.7 15.25 18.7 15.25 19.8 1.08928571 19.8"></polygon>
+                                    <polygon id="Rectangle-5-Copy" fill="#E6E4E1" points="1.08928571 20.9 13.0714286 20.9 13.0714286 22 1.08928571 22"></polygon>
+                                </g>
+                            </g>
+                            <g id="Listing-Copy-7" transform="translate(20.052083, 51.389522)">
+                                <g id="Group">
+                                    <rect id="Rectangle-2-Copy-2" fill="#FFFFFF" x="0" y="0" width="18.5178571" height="24.2" rx="1"></rect>
+                                    <rect id="Mask" fill="#B4B8BE" x="0.931486486" y="0.99423884" width="16.3392857" height="16.5" rx="0.6"></rect>
+                                </g>
+                            </g>
+                            <g id="Listing-Copy-2" transform="translate(20.348958, 25.954442)">
+                                <g id="Group">
+                                    <rect id="Rectangle-2-Copy-2" fill="#FFFFFF" x="0" y="0" width="18.5178571" height="24.2" rx="1"></rect>
+                                    <rect id="Mask" fill="#B4B8BE" x="0.931486486" y="0.99423884" width="16.3392857" height="16.5" rx="0.6"></rect>
+                                    <polygon id="Rectangle-5" fill="#B4B8BE" points="1.08928571 18.7 15.25 18.7 15.25 19.8 1.08928571 19.8"></polygon>
+                                    <polygon id="Rectangle-5-Copy" fill="#E6E4E1" points="1.08928571 20.9 13.0714286 20.9 13.0714286 22 1.08928571 22"></polygon>
+                                </g>
+                            </g>
+                            <g id="Listing-Copy-5" transform="translate(40.104167, 25.694761)">
+                                <g id="Group">
+                                    <rect id="Rectangle-2-Copy-2" fill="#FFFFFF" x="0" y="0" width="18.5178571" height="24.2" rx="1"></rect>
+                                    <rect id="Mask" fill="#B4B8BE" x="0.931486486" y="0.99423884" width="16.3392857" height="16.5" rx="0.6"></rect>
+                                    <polygon id="Rectangle-5" fill="#B4B8BE" points="1.08928571 18.7 15.25 18.7 15.25 19.8 1.08928571 19.8"></polygon>
+                                    <polygon id="Rectangle-5-Copy" fill="#E6E4E1" points="1.08928571 20.9 13.0714286 20.9 13.0714286 22 1.08928571 22"></polygon>
+                                </g>
+                            </g>
+                            <g id="Listing-Copy-8" transform="translate(40.104167, 51.389522)">
+                                <g id="Group">
+                                    <rect id="Rectangle-2-Copy-2" fill="#FFFFFF" x="0" y="0" width="18.5178571" height="24.2" rx="1"></rect>
+                                    <rect id="Mask" fill="#B4B8BE" x="0.931486486" y="0.99423884" width="16.3392857" height="16.5" rx="0.6"></rect>
+                                </g>
+                            </g>
+                            <g id="Listing-Copy-6" transform="translate(0.000000, 26.000000)">
+                                <g id="Group">
+                                    <rect id="Rectangle-2-Copy-2" fill="#FFFFFF" x="0" y="0" width="18.5178571" height="24.2" rx="1"></rect>
+                                    <rect id="Mask" fill="#B4B8BE" x="0.931486486" y="0.99423884" width="16.3392857" height="16.5" rx="0.6"></rect>
+                                    <polygon id="Rectangle-5" fill="#B4B8BE" points="1.08928571 18.7 15.25 18.7 15.25 19.8 1.08928571 19.8"></polygon>
+                                    <polygon id="Rectangle-5-Copy" fill="#E6E4E1" points="1.08928571 20.9 13.0714286 20.9 13.0714286 22 1.08928571 22"></polygon>
+                                </g>
+                            </g>
+                            <g id="Listing-Copy-9" transform="translate(0.000000, 51.389522)">
+                                <g id="Group">
+                                    <rect id="Rectangle-2-Copy-2" fill="#FFFFFF" x="0" y="0" width="18.5178571" height="24.2" rx="1"></rect>
+                                    <rect id="Mask" fill="#B4B8BE" x="0.931486486" y="0.99423884" width="16.3392857" height="16.5" rx="0.6"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <polygon id="Rectangle-5" fill="#B4B8BE" mask="url(#mask-2)" points="10.390625 13.8370616 33.390625 13.8370616 33.390625 15.8370616 10.390625 15.8370616"></polygon>
+                <polygon id="Rectangle-5-Copy-2" fill="#E6E4E1" mask="url(#mask-2)" points="36.09375 13.8370616 59.09375 13.8370616 59.09375 15.8370616 36.09375 15.8370616"></polygon>
+            </g>
+            <rect id="Rectangle" fill="#6A6F75" x="0" y="0" width="70" height="3"></rect>
+            <g id="Group-13" transform="translate(41.000000, 16.894009)">
+                <g id="Listing-Copy-3" transform="translate(1.000000, 0.000000)">
+                    <g id="Group">
+                        <g id="Rectangle-2-Copy-2">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        </g>
+                        <rect id="Mask" fill="#B4B8BE" x="1.7" y="1.6" width="20" height="20" rx="0.742857143"></rect>
+                        <polygon id="Rectangle-5" fill="#B4B8BE" points="2 23 19.887218 23 19.887218 24.364 2 24.364"></polygon>
+                        <polygon id="Rectangle-5-Copy" fill="#E6E4E1" points="2 26 17.1353383 26 17.1353383 27.364 2 27.364"></polygon>
+                    </g>
+                </g>
+                <g id="Listing-Copy-10" transform="translate(0.000000, 17.500000)">
+                    <g id="Group">
+                        <g id="Rectangle-2-Copy-2">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                            <use fill="#43AA8B" fill-rule="evenodd" xlink:href="#path-5"></use>
+                        </g>
+                        <polygon id="Rectangle-5" fill="#FFFFFF" points="4 1.65 21.5323129 1.65 21.5323129 2.65 4 2.65"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

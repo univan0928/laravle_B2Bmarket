@@ -1,0 +1,40 @@
+.fs-18 {
+  font-size: 18px;
+}
+.pad-0 {
+  padding: 0px!important;
+}
+.mb-10 {
+  margin-bottom: 1rem!important;
+}
+.fs-15 {
+  font-size: 15px;
+  color: #0099cc!important;
+}
+.ps-10 {
+  padding-left: 10px;
+}
+.custom-badge {
+  display: inline-block;
+  background: lightgray;
+  padding: 0.35rem;
+  border-radius: 5px;
+  margin-top: 3px;
+  color: #666666;
+}
+.custom-hr {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.fs-20 {
+  font-size: 20px!important;
+}
+.text-black {
+  color: black;
+}
+@media (max-width: 479px) {
+  .ps-product--detail .ps-product__shopping .ps-btn {
+    display: block;
+    margin-bottom: 1rem;
+  }
+}

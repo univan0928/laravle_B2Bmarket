@@ -1,0 +1,336 @@
+.left-side {
+  background-color: #e1e1e1;
+  padding: 2.5rem 2rem;
+}
+
+.avatar {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  border: 3px solid white;
+  background-color: #349ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar i {
+  font-size: 3.5rem;
+  color: white;
+  font-weight: 700;
+}
+
+.customer-name {
+  font-size: 18px;
+  color: black;
+  font-weight: 600;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.company-name {
+  font-size: 16px;
+  margin-top: -3px;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.premium {
+  color: white;
+  background-color: gray;
+  padding: 2px;
+  font-size: 12px;
+  max-width: 61px;
+  border-radius: 3px;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.btn-primary {
+  background-color: #299bcc;
+  border-color: #299bcc;
+  box-shadow: 0;
+  color: #fff;
+  padding: 7.2px;
+}
+
+.btn-primary.focus, .btn-primary:focus, .btn-primary:hover {
+  background-color: #2383ac;
+  border-color: #207ba2;
+  color: #fff;
+}
+
+.context-item a {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 50px auto 0;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.context-item {
+  width: 100%;
+}
+
+.context-item.orange {
+  background: #f29d00;
+  border: 3px solid #e3e4e4;
+}
+
+.context-item {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  /* width: 33%; */
+}
+
+.item-content .content-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+}
+
+.item-content .content-header img {
+  background: #fff;
+  border-radius: 100%;
+  padding: 5px;
+}
+
+.context-item h4 {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.context-item span {
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.context-item.blue {
+  background: #349ccc;
+  border: 3px solid #e3e4e4;
+}
+
+.context-item.black {
+  border: 3px solid #349ccc;
+}
+
+.context-item.black .item-content .content-header h4 {
+  color: black;
+}
+
+.context-item.black .item-content .content-header img {
+  background: #349ccc;
+}
+
+.context-item.black .item-content span {
+  color: #666666;
+}
+
+.btn-warning {
+  background-color: #f29d00;
+  border-color: #f29d00;
+  box-shadow: 0;
+  color: #fff;
+  padding: 7.2px;
+}
+
+.btn-warning.focus, .btn-warning:focus, .btn-warning:hover {
+  background-color: #cc8400;
+  border-color: #bf7c00;
+  color: #fff;
+}
+
+.custom-hr {
+  border-top: 2px solid white;
+}
+
+.account-title {
+  text-align: center;
+  font-size: 16px;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.account-button {
+  text-align: center;
+  width: 100%;
+  padding: 7px;
+  background-color: #d4d4d4;
+  border: 1px solid #666666;
+  color: #666666;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.custom-my-account {
+  background-color: #f1f1f1;
+  padding-top: 3rem;
+}
+
+.account-card {
+  background: white;
+  border: 1px solid #e3e4e4;
+  padding: 20px;
+}
+
+.top-part {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-part span {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.top-part.blue i {
+  font-size: 32px;
+  color: red;
+  font-weight: 500;
+}
+
+.top-part.yellow i {
+  font-size: 32px;
+  color: #349ccc;
+  font-weight: 500;
+}
+
+.account-card p {
+  font-size: 16px;
+  color: #666666;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.account-card button {
+  border: 1px solid #349ccc;
+  background-color: white;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  color: #349ccc;
+  font-size: 16px;
+  padding: 7px;
+}
+
+.account-card button.yellow {
+  border: 1px solid #f29d00;
+  color: #f29d00;
+}
+
+.account-card h4 {
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.popular-item {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #e3e4e4;
+  border-top: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.popular-item div {
+  color: #349ccc;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.popular-item p {
+  color: white;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  padding: 1px 10px;
+  background-color: #349ccc;
+  border-radius: 10px;
+  font-size: 12px;
+  max-height: 21.2px;
+}
+
+.top-chart {
+  border-bottom: none;
+  font-weight: 700;
+  font-family: Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.dataTables_filter label input.form-control {
+  height: 40px!important;
+}
+
+select.custom-select {
+  height: 40px!important;
+}
+
+th {
+  font-weight: 600;
+}
+
+.custom-height {
+  height: 40px;
+}
+
+tr.searchable td {
+  box-shadow: none!important;
+}
+
+button.searchable-button {
+  border: 1px solid #dddddd;
+  color: #666666;
+  font-size: 14px;
+}
+
+.title-font {
+  color: #349ccc;
+}
+
+.badge {
+  font-size: 12px;
+}
+
+.badge-info {
+  background-color: #349ccc!important;
+}
+
+.date-font {
+  font-size: 14px!important;
+}
+
+.button-adver {
+  padding: 7px!important;
+  background-color: #349ccc!important;
+  color: white!important;
+}
+
+.button-adver p {
+  color: white;
+  font-size: 14px;
+  margin-top: -8px;
+}
+
+.top-chart div {
+  font-size: 16px;
+}
+
+.dropdown-item {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+  .dataTables_wrapper .row:nth-child(2) {
+    overflow-x: scroll;
+  }
+  #table_id_length, #table_id_filter {
+    text-align: left;
+  }
+  #table_id_length {
+    padding-left: 15px;
+  }
+  .top-chart div:nth-child(2) {
+    text-align: right;
+  }
+  .top-adver {
+    margin-bottom: 5px;
+  }
+}

@@ -1,0 +1,256 @@
+.hero {
+  background-image: url('../img/vendor/introduce.jpg');  
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  padding-top: 4.8rem;
+  padding-bottom: 4.8rem;
+}
+
+.container-xl {
+  width: 100%;
+  margin: auto;
+}
+
+.topic {
+  display: block;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+[class*="col-"] {
+  width: 100%;
+  padding: 1.6rem;
+}
+
+.hero h1 {
+  display: block;
+  font-size: 9.6rem;
+  line-height: 11.2rem;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 3.2rem;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.hero hr {
+  border: 2px solid #fff;
+  background: #fff;
+  opacity: 0.5;
+}
+
+.hero .text {
+  display: block;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  color: #fff;
+  margin-top: 3rem;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.myBtnContainer {
+  margin-top: 4.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.accordion .card button::after {
+  content: "\e93a";
+    font: normal normal normal 12px/1 linearicons;
+    position: absolute;
+    top: 40%;
+    /* transform: translateY(-50%); */
+    right: 0;
+}
+
+.accordion .card {
+  border: 1px solid #15171c;
+  border-radius: 8px;
+}
+
+.card-header {
+  background: #15171c40;
+}
+
+.accordion .card button[aria-expanded = true]::after {
+  content: "\e93a";
+  font: normal normal normal 12px/1 linearicons;
+  position: absolute;
+  top: 40%;
+  /* transform: translateY(-50%); */
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.top-button {
+  background: #fff;
+  color: #15171c;
+  border: 2px solid #15171c;
+  border-radius: 3.2rem;
+  outline: none;
+  padding: 0.8rem 2.4rem;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 3px 1px;
+  text-align: center;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.content-part {
+  margin-top: 5rem; 
+}
+
+.btn-link {
+  text-decoration: none;
+  font-size: 16px;
+  color: #666666;
+  font-weight: 500;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.card-body {
+  color: #666;;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.btn-link:hover {
+  color: #666666;
+  text-decoration: none;
+}
+
+.btn-link:focus {
+  color: #666666;
+  text-decoration: none;
+}
+
+.top-button.active {
+  background: #15171c;
+  border: 2px solid #15171c;
+  color: #fff;
+}
+
+.lead {
+  width: 100%;
+  min-height: 46rem;
+  background: #eee;
+  padding-top: 6.4rem;
+  padding-bottom: 9rem;
+  margin: 0;
+}
+
+.lead .topic {
+  display: block;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  color: #15171c;
+  text-transform: uppercase;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.lead h1 {
+  display: block;
+  font-size: 9.6rem;
+  line-height: 11.2rem;
+  color: #15171c;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.lead hr {
+  border: 2px solid #15171c;
+  background: #15171c;
+  opacity: 0.5;
+}
+
+.lead .text {
+  display: block;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  color: #fff;
+  margin-top: 3rem;
+  color: #333;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.custom-font {
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.form-control {
+  background: white;
+  border-radius: 0.5rem;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, san-serif;
+}
+
+.lead .hubspot {
+  display: block;
+  width: 100%;
+  min-height: 20rem;
+  margin: 3.2rem auto;
+}
+
+.container, .container-fluid, .container-xxl, .container-xl, .container-l, .container-m, .container-s {
+  width: 100%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 1200px) {
+  .hero h1 {
+    font-size: 8rem;
+    line-height: 9.6rem;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+  .hero .topic {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-xl, .container-l, .container-m, .container-s, .container {
+    max-width: 1140px;
+  }
+
+}
+
+@media (min-width: 1400px) {
+  .container-xxl, .container-xl, .container-l, .container-m, .container-s, .container {
+    max-width: 1320px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .hero h1 {
+    font-size: 6.2rem;
+    line-height: 8.8rem;
+    margin-bottom: 0;
+  }
+  .hero .text {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+  .hero hr {
+    margin: 0 1.6rem 3.2rem 1.6rem;
+  }
+  .lead h1 {
+    font-size: 4rem;
+    line-height: 5.5rem;
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 5.6rem;
+    line-height: 6.8rem;
+  }
+  .lead h1 {
+    font-size: 3.5rem;
+    line-height: 4.25rem;
+  }
+}

@@ -1,0 +1,808 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+html {
+    height: 100%
+}
+
+p {
+    color: grey
+}
+
+#heading {
+    text-transform: uppercase;
+    color: #15171c;
+    font-weight: normal
+}
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+.h-93 {
+  height: 93%;
+}
+.pad-15 {
+  padding-left: 15px;
+  padding-right: 15px;
+} 
+#msform fieldset {
+    border: 0 none;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-bottom: 20px;
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    
+}
+
+.form-card {
+    text-align: left
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+
+
+#msform .action-button {
+    display: inline-block;
+    padding: 15px 5px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #000;
+    border: none;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #15171c;
+    transition: all .4s ease;
+    cursor: pointer;
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    background-color: #222;
+    color: #fff;
+}
+.font-30 {
+  font-size: 30px;
+}
+.font-25 {
+  font-size: 30px;
+}
+.z-10000 {
+  z-index: 10000;
+}
+.pad-20 {
+  padding-left: 20px!important;
+  padding-right: 20px!important;
+}
+#msform .action-button-previous,
+.modal-content .action-button-previous {
+    display: inline-block;
+    padding: 15px 5px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: white;
+    border: none;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #222;
+    transition: all .4s ease;
+    cursor: pointer;
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus,
+.modal-content .action-button-previous:hover,
+.modal-content .action-button-previous:focus {
+    background-color: #000000
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    position: relative
+}
+
+.fs-title {
+    font-size: 25px;
+    color: #15171c;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left
+}
+
+.purple-text {
+    color: #15171c;
+    font-weight: normal
+}
+
+.steps {
+    font-size: 25px;
+    color: gray;
+    margin-bottom: 10px;
+    font-weight: normal;
+    text-align: right
+}
+
+.fieldlabels {
+    color: gray;
+    text-align: left
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#progressbar .active {
+    color: #15171c;
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+
+#progressbar #account:before {
+    font-family: FontAwesome;
+    content: "\f0ca"
+}
+
+#progressbar #personal:before {
+    font-family: FontAwesome;
+    content: "\f0d0"
+}
+
+#progressbar #payment:before {
+    font-family: FontAwesome;
+    content: "\f219"
+}
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #15171c
+}
+
+.progress {
+    height: 20px
+}
+
+.progress-bar {
+    background-color: #15171c
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+
+
+
+/* dddddddddddddddddddd */
+
+.category-group .form-group--icon i {
+    right: 8%;
+}
+
+.form-card-section .form-card-section-title {
+    color: #666666;
+}
+
+.frame {
+    height: 100%;
+}
+
+.frame.col-6 {
+    height: 50%;
+    margin-bottom: 1rem;
+}
+
+.center {
+    height: 100%;
+	border-radius: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-direction: column;
+    border: 2px dashed #999;
+}
+
+.dropzone {
+	width: 100px;
+	height: 80px;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.upload-icon {
+	margin: 25px 2px 2px 2px;
+}
+
+.upload-input {
+	position: relative;
+	top: -62px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.ps-border-btn {
+    display: inline-block;
+    padding: 15px 45px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #15171c;
+    border: none;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid;
+    border-color: #15171c;
+    transition: all .4s ease;
+    cursor: pointer;
+}
+.form-card-section .form-check-input {
+    margin: 0;
+}
+
+.form-card-section .form-check-label {
+    margin-left: 2rem;
+}
+
+.form-check-control {
+    margin-top: 1rem;
+}
+
+.ad-card {
+    border: 1px solid #15171c59;
+    border-radius: 5px;
+}
+
+.ad-card .card-header, 
+.ad-card .card-footer {
+    background: #15171c59;
+}
+
+.ad-card .card-header h6 {
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.ad-card .card-header p {
+    margin: 0;
+}
+
+.ad-card .card-header .form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+  
+  .ad-card .card-header .form-group label {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .ad-card .card-header .form-group label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid black;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 50px;
+  }
+  
+  .ad-card .card-header .form-group input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .ad-card .card-header .form-group {
+    margin: 0;
+  }
+
+  .mp-Icon {
+    display: inline-block;
+    margin-top: -2px;
+    vertical-align: middle;
+  }
+
+
+.mp-Icon--lg {
+    height: 32px;
+    width: 32px;
+    margin-right: 1rem;
+}
+
+.mp-Icon {
+    display: inline-block;
+    margin-top: -2px;
+    vertical-align: middle;
+    height: 32px;
+    width: 32px;
+    margin-right: 1rem;
+}
+
+.mp-svg-lightbulb--success, .mp-svg-lightbulb-green {
+    background: url(./../img/vendor/icons.svg) no-repeat;
+    background-size: auto 100%;
+    background-position: 51.80722891566265% 0;
+}
+
+.modify-btn {
+    margin-left: 1rem;
+    border: none;
+    font-weight: 400;
+    background: transparent;
+    color: #116db4;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.mp-svg-edit--action, .mp-svg-edit-blue {
+    background: url(./../img/vendor/icons.svg) no-repeat;
+    background-size: auto 100%;
+    background-position: 34.53815261044177% 0;
+}
+
+
+textarea {
+    background-color:#FAFAFA;
+    border:#EFEFEF solid 1px;
+    color:#333;
+    height:150px;
+    width:100%;
+}
+
+
+/* richtext custom style */
+.attributes-tip .attributes-tip-progress-bar-container {
+    padding-left: 24px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.attributes-tip .attributes-tip-progress-bar-container .attributes-tip-progress-bar {
+    flex: 1;
+    height: 8px;
+    border-radius: 3px;
+    background-color: #f7f7f6;
+    max-width: 400px;
+}
+
+.attributes-tip .attributes-tip-progress-bar-container .attributes-tip-progress-bar .attributes-tip-progress-bar-inner {
+    height: 100%;
+    width: 0;
+    border-radius: 3px;
+    background-color: #eda566;
+    transition: all .2s ease;
+}
+
+.attributes-tip .attributes-tip-progress-bar-container .attributes-tip-progress-bar-text {
+    margin-left: 8px;
+    height: 14px;
+    line-height: 12px;
+    font-size: 12px;
+    color: #818a95;
+}
+
+#syi-price-type .syi-form-section #syi-bidding-accept .syi-toggle-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    justify-content: space-between;
+}
+
+#syi-price-type .syi-form-section #syi-bidding-accept .syi-toggle-wrap .mp-Toggle {
+    margin-left: 12px;
+}
+.mp-Toggle--button {
+    height: 31px;
+    margin: 4px 0;
+    width: 56px;
+}
+.mp-Toggle {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor: pointer;
+    display: block;
+    position: relative;
+}
+
+#syi-price-type .syi-form-section #syi-bidding-accept .syi-toggle-wrap .mp-Toggle .mp-Toggle-input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    left: 0;
+    z-index: 50;
+    cursor: pointer;
+}
+
+
+#price-box-content input {
+    font-weight: 300;
+}
+
+.mp-Toggle--button input:checked+.mp-Toggle-round {
+    background-color: #116db4;
+}
+
+.allow-bidding {
+    margin: 2rem 0;
+}
+
+
+.input-group-text {
+    width: 5rem;
+    text-align: center;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:focus {
+    outline: 0 
+}
+  
+
+.toggle{
+    height: 32px;
+    width: 52px;
+    border-radius: 16px;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    border: 2px solid #474755;
+    background: linear-gradient(180deg, #2D2F39 0%, #1F2027 100%);
+    transition: all .2s ease;
+
+}
+.toggle:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 1px 2px rgba(44,44,44,.2);
+    transition: all .2s cubic-bezier(.5,.1,.75,1.35);
+}
+.toggle:checked {
+    border-color: #654FEC
+}
+.toggle:after {
+    transform: translatex(20px);
+
+}
+
+.contact-info {
+    margin-bottom: 1rem;
+}
+
+.contact-info label {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.switch-title {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.form-card-section label {
+    margin-top: 1rem;
+}
+
+
+.form-card-section .list-group .list-group-item {
+    height: 50px;
+}
+
+.extra-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.extra-section img {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+    
+
+.ad-preview {
+    overflow: hidden;
+}
+
+.ad-preview .title {
+    font-size: 24px;
+    line-height: 27px;
+    font-weight: 700;
+}
+
+.ad-preview .price {
+    font-size: 20px;
+    line-height: 22px;
+    margin: 10px 0 20px;
+    border-bottom: 1px solid #e6e4e1;
+    padding-bottom: 10px;
+}
+
+.ad-preview .gallery {
+    overflow: auto;
+}
+
+.ad-preview .gallery .gallery-canvas.empty {
+    border: 1px solid #e6e4e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-preview .gallery .gallery-canvas {
+    position: relative;
+    width: 100%;
+    min-height: 248px;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.ad-preview label {
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 700;
+    margin: 20px 0;
+    display: block;
+    clear: both;
+}
+
+.ad-preview .attributes {
+    float: left;
+    margin-right: 12px;
+    width: 266px;
+    font-size: 14px;
+    line-height: 1.2em;
+}
+
+.ad-preview .attributes td.name {
+    font-weight: 700;
+}
+
+.ad-preview .attributes {
+    float: left;
+    margin-right: 12px;
+    width: 266px;
+    font-size: 14px;
+    line-height: 1.2em;
+}
+.clear-fix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.ad-preview .options {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.2em;
+}
+
+.ad-preview .options div {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.modal-content {
+    padding: 1.5rem;
+}
+
+.next-payment {
+    display: inline-block;
+    padding: 15px 45px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #000;
+    border: none;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #15171c;
+    transition: all .4s ease;
+    cursor: pointer;
+}
+
+.payment-card.card .card-header label {
+    margin-left: 1rem;
+}
+
+.mp-svg-logo-ideal {
+    background: url(./../img//vendor/logospirit.svg) no-repeat;
+    background-size: auto 100%;
+    background-position: 87.6923076923077% 0;
+}
+
+.mp-svg-logo-paypal {
+    background: url(./../img//vendor/logospirit.svg) no-repeat;
+    background-size: auto 100%;
+    background-position: 91.7948717948718% 0;
+}
+
+.mp-svg-credit-card {
+    background: url(./../img//vendor/icons.svg) no-repeat;
+    background-size: auto 100%;
+    background-position: 30.522088353413654% 0;
+}
+
+.payment-card.card .card-body {
+    text-align: center;
+}
+
+.payment-card.card .mp-Icon {
+    width: 64px;
+    height: 64px;
+}
+
+.payment-card.card {
+    border: 1px solid #15171c40;
+}
+
+.payment-card.card:hover {
+    border: 1px solid #15171c;
+    /* background: #15171c40; */
+}
+
+.select_payment .card-footer {
+    display: none;
+}
+
+.paypal-button {
+    padding: 0.5rem 1rem;
+    background: #15171c;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-card.finish img {
+    filter: invert(1);
+}
+
+.totalprice {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mp-svg-category-cars {
+    background: url(./../img//vendor/icons.svg) no-repeat;
+    background-size: auto 100%;
+    background-position: 17.670682730923694% 0;
+}
+
+.mp-Button-icon--left.mp-Button-icon {
+    display: inline-block;
+    margin: -10px 0 -10px -10px;
+}
+
+.mp-Button-icon {
+    display: inline-block;
+    margin: -10px -16px;
+    height: 32px;
+    width: 32px;
+    position: relative;
+}
+.mp-Button--secondary {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 16px;
+    background: #f7f7f6;
+    border-color: #e6e4e1;
+    box-shadow: inset 0 -2px 0 0 #ebebe9;
+    color: #2d3c4d;
+}
+
+.card {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.my-1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .title-2 {
+    text-align: right;
+  }
+  .custom-pad {
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+  .custom-pad-right-0 {
+    padding-right: 0px;
+  }
+}
