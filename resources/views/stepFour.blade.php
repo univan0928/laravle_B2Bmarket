@@ -49,7 +49,7 @@
                                     <form action="{{ route('stepFour') }}" method="POST">
                                         @csrf
                                         <label class="label-2">{{ __('Enter OTP')}}</label>
-                                        <input type="text" class="custom-form-control" />
+                                        <input type="email" name="otp_email" class="custom-form-control" />
                                         <button type="submit" class="b-btn mt-15 mb-15">{{ __('Create your BrandedStocklots account')}}</button>
                                     </form>
                                     <p class="para-normal">By creating an account, you agree to BrandedStocklots's <a href="#">{{ __('Conditions of Use')}}</a> and <a href="#">{{ __('Privacy Notice')}}</a>.</p>

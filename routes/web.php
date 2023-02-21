@@ -38,6 +38,15 @@ Route::get('/stepSix', function () {
 Route::get('/stepSeven', function () {
     return view('/stepSeven');
 });
+Route::get('/stepEight', function () {
+    return view('/stepEight');
+});
+
+Route::get('/send_otp', function () {
+    return view('/send_otp');
+});
+
+
 
 
 

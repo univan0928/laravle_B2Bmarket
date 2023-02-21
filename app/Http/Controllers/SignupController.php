@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OtpMail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -11,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 // use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+
+use App\Mail\SendOTP;
 
 require_once app_path().'/Constant/constants.php';
 
@@ -171,10 +172,17 @@ class SignupController extends Controller
     public function stepFour(Request $request)
     {
         // GET ALL SESSION DATA
-        $value = $request->session()->all();
-        $email = session('email');
-        $otp = Str::random(6);
-        Mail::to($email)->send(new OtpMail($otp));
+        // $value = $request->session()->all();
+        // $email = session('email');
+        // $otp = Str::random(6);
+        // Mail::to($email)->send(new OtpMail($otp));
+
+        $email = $request->input('otp_email');
+
+        $otp = rand(1000, 9999);
+        // $to_email = 'recipient-email-address';
+        Mail::to($email)->send(new SendOTP($otp));
+        return view('send_otp');        
     }
 
 
@@ -209,31 +217,31 @@ class SignupController extends Controller
 
 
         // GET DATA FROM $request
-        $first_last_name = $request->input('first_last_name');
-        $business_phone = $request->input('business_phone');
-        $receive_message = $request->input('receive_message');
-        $business_name = $request->input('business_name');
-        $business_type = $request->input('business_type');
-        $street_address = $request->input('street_address');
-        $suite_unit_floor = $request->input('suite_unit_floor');
-        $zip_code = $request->input('zip_code');
-        $city = $request->input('city');
-        $state = $request->input('state');
+        // $first_last_name = $request->input('first_last_name');
+        // $business_phone = $request->input('business_phone');
+        // $receive_message = $request->input('receive_message');
+        // $business_name = $request->input('business_name');
+        // $business_type = $request->input('business_type');
+        // $street_address = $request->input('street_address');
+        // $suite_unit_floor = $request->input('suite_unit_floor');
+        // $zip_code = $request->input('zip_code');
+        // $city = $request->input('city');
+        // $state = $request->input('state');
 
 
         // SAVE DATA IN SESSION (METHOD 1)
-        session([
-            'first_last_name' => $first_last_name,
-            'business_phone' => $business_phone,
-            'receive_message' => $receive_message,
-            'business_name' => $business_name,
-            'business_type' => $business_type,
-            'street_address' => $street_address,
-            'suite_unit_floor' => $suite_unit_floor,
-            'zip_code' => $zip_code,
-            'city' => $city,
-            'state' => $state
-        ]);
+        // session([
+        //     'first_last_name' => $first_last_name,
+        //     'business_phone' => $business_phone,
+        //     'receive_message' => $receive_message,
+        //     'business_name' => $business_name,
+        //     'business_type' => $business_type,
+        //     'street_address' => $street_address,
+        //     'suite_unit_floor' => $suite_unit_floor,
+        //     'zip_code' => $zip_code,
+        //     'city' => $city,
+        //     'state' => $state
+        // ]);
 
         return redirect('/stepSeven');
 
@@ -259,23 +267,24 @@ class SignupController extends Controller
 
 
         // GET DATA FROM $request
-        $tax_ein_ssn = $request->input('tax_ein_ssn');
-        $invitation_code = $request->input('invitation_code');
-        $business_url = $request->input('business_url');
+        // $tax_ein_ssn = $request->input('tax_ein_ssn');
+        // $invitation_code = $request->input('invitation_code');
+        // $business_url = $request->input('business_url');
 
         // SAVE DATA IN SESSION (METHOD 1)
-        session([
-            'tax_ein_ssn' => $tax_ein_ssn,
-            'invitation_code' => $invitation_code,
-            'business_url' => $business_url
-        ]);
+        // session([
+        //     'tax_ein_ssn' => $tax_ein_ssn,
+        //     'invitation_code' => $invitation_code,
+        //     'business_url' => $business_url
+        // ]);
         
 
         // GET ALL SESSION DATA
-        $value = $request->session()->all();
+        // $value = $request->session()->all();
         // $email = session('email');
-        dd($value);
+        // dd($value);
 
+        return redirect('/stepEight');
     }
 
 

@@ -61,6 +61,7 @@
                                                     (SSN).</p>
                                                 <label class="subtitle-2 pt-10">{{ __('Tax ID, EIN, or SSN')}}</label>
                                                 <input type="text" name="tax_ein_ssn" value="{{ old('tax_ein_ssn') }}" class="custom-form-control mb-20" />
+                                                <div class="text-danger none" id="tax_ein_ssn_error">This field is required</div>
                                                 @error('tax_ein_ssn')
                                                     <div class="text-danger mt-err">{{ $message }}</div>
                                                 @enderror
@@ -76,6 +77,7 @@
                                                     your one-time password.')}}</p>
                                                 <label class="subtitle-2 pt-10">{{ __('Invitation code')}}</label>
                                                 <input type="text" name="invitation_code" value="{{ old('invitation_code') }}" class="custom-form-control mb-20" />
+                                                <div class="text-danger none" id="invitation_code_error">The Inivation code field is required</div>
                                                 @error('invitation_code')
                                                     <div class="text-danger mt-err">{{ $message }}</div>
                                                 @enderror
@@ -90,6 +92,7 @@
                                                     get verified faster.')}}</p>
                                                 <label class="subtitle-2 pt-10">{{ __('Business website URL')}}</label>
                                                 <input type="text" name="business_url" value="{{ old('business_url') }}" class="custom-form-control mb-20" />
+                                                <div class="text-danger none" id="business_url_error">The business url field is required</div>
                                                 @error('business_url')
                                                     <div class="text-danger mt-err">{{ $message }}</div>
                                                 @enderror
@@ -142,4 +145,6 @@
 
 @section('custom_js')
     <script src="{{ asset('/js/custom.js') }}"></script>
+    <!-- CLIENT-SIDE VALIDATION -->
+    <script src="{{ asset('/js/validation/stepSeven.js') }}"></script>
 @endsection

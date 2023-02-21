@@ -59,6 +59,7 @@
                                         <p class="subtitle-3">{{ __('Contract Information')}}</p>
                                         <label class="label-1">{{ __('First and last name')}}</label>
                                         <input type="text" name="first_last_name" value="{{ old('first_last_name') }}" placeholder="First and last name" class="custom-form-control" />
+                                        <div class="text-danger none" id="first_last_name_error">The name field is required</div>
                                         @error('first_last_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -73,6 +74,8 @@
                                             </span>
                                         </label>
                                         <input type="text" name="business_phone" value="{{ old('business_phone') }}" class="custom-form-control" />
+                                        <div class="text-danger none" id="business_phone_error_required">The business phone field is required</div>
+                                        <div class="text-danger none" id="business_phone_error_phone">The business phone field must be number</div>
                                         @error('business_phone')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -96,6 +99,7 @@
                                             </span>
                                         </label>
                                         <input type="text" name="business_name" value="{{ old('business_name') }}" class="custom-form-control" />
+                                        <div class="text-danger none" id="business_name_error">The business name field is required</div>
                                         @error('business_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -108,6 +112,7 @@
                                             <input type="radio" name="business_type" value="Other" {{ old('business_type') == 'Other' ? 'checked' : '' }}>
                                             <span>{{ __('Other')}}</span>
                                         </div>
+                                        <div class="text-danger none" id="business_type_error">The business type field is required</div>
                                         @error('business_type')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -117,6 +122,7 @@
                                             documents like tax forms.')}}</p>
                                         <label class="label-1">{{ __('Street address')}}</label>
                                         <input type="text" name="street_address" value="{{ old('street_address') }}" class="custom-form-control" />
+                                        <div class="text-danger none" id="street_address_error">The street address field is required</div>
                                         @error('street_address')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -124,11 +130,14 @@
                                         <input type="text" name="suite_unit_floor" class="custom-form-control" />
                                         <label class="label-1">{{ __('ZIP code')}}</label>
                                         <input type="text" name="zip_code" value="{{ old('zip_code') }}" class="custom-form-control" />
+                                        <div class="text-danger none" id="zip_code_error_required">The zip code field is required</div>
+                                        <div class="text-danger none" id="zip_code_error_number">The zip code field must be number</div>
                                         @error('zip_code')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                         <label class="label-1">{{ __('City')}}</label>
                                         <input type="text" name="city" value="{{ old('city') }}" class="custom-form-control" />
+                                        <div class="text-danger none" id="city_error">The city field is required</div>
                                         @error('city')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -195,6 +204,7 @@
                                             <option value="AP" {{ old('state') == 'AP' ? 'selected' : '' }}>U.S. Armed Forces, Pacific</option>
                                             <option value="AA" {{ old('state') == 'AA' ? 'selected' : '' }}>U.S. Armed Forces, Americas</option>
                                         </select>
+                                        <div class="text-danger none" id="state_error">The country field is required</div>
                                         @error('state')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -209,4 +219,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('custom_js')
+    <!-- CLIENT-SIDE VALIDATION -->
+    <script src="{{ asset('/js/validation/stepSix.js') }}"></script>
 @endsection
