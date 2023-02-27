@@ -31,9 +31,11 @@ Route::get('/step3', function () {
     return view('step3');
 })->middleware('check.progress');
 
-Route::get('/step4', function () {
-    return view('/step4');
-})->middleware('check.progress');
+// Route::get('/step4', function () {
+//     return view('/step4');
+// })->middleware('check.progress');
+
+
 
 Route::get('/step5', function () {
     return view('/step5');
@@ -73,9 +75,11 @@ Route::post('/step5', [SignupController::class, 'step5'])->name('step5');
 Route::post('/step6', [SignupController::class, 'step6'])->name('step6');
 Route::post('/step7', [SignupController::class, 'step7'])->name('step7');
 Route::post('/step8', [SignupController::class, 'step8'])->name('step8');
-Route::get('/resendEmail', [SignupController::class, 'resendEmail'])->name('resendEmail');
 Route::get('/resendPhone', [SignupController::class, 'resendPhone'])->name('resendPhone');
 Route::get('/upload', [SignupController::class, 'upload'])->name('upload');
+Route::get('/step4', [SignupController::class, 'sendEmail'])->name('sendEmail');
+
+
 
 Route::get('/signin/step1', function () {
     return view('signin.step1');

@@ -58,8 +58,6 @@ class SignupController extends Controller
     public function step2(Request $request)
     {
 
-        // CHECK SIGNUP STEP
-
         // SERVER-SIDE VALIDATION
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:40',
@@ -88,8 +86,10 @@ class SignupController extends Controller
         // GET EMAIL FROM $request
         $email = $request -> input('email');
 
-        session(['email' => $email]);
-        session(['signup_step' => 2]);
+        session([
+            'email' => $email,
+            'signup_step' => 2
+        ]);
 
         return redirect('/step3');
     }
@@ -111,6 +111,7 @@ class SignupController extends Controller
             $err_msg="";
             if($responseData->success){
                 $success_msg = SUCCESS_MESSAGE;
+                session(['signup_step' => 3]);
             } else {
                 $err_msg =  ERROR_MESSAGE1;
             }
@@ -123,104 +124,28 @@ class SignupController extends Controller
             'error'     =>  $err_msg ?? "",
             'success'   =>  $success_msg ?? ""
         );
-
-
-        // SEND OTP TO THE EMAIL ADDRESS
-        // GET EMAIL FROM SESSION
-        $email = session('email');
-        $otp = rand(100000, 999999);
-// -----------------------------------------------------------------------------
-        // Mail::to($email)->send(new OtpMail($otp));
-// -----------------------------------------------------------------------------
-        // $destinationPath = asset('assets/first_logo.png');
-
-        // $subject = "Brandedstocklots";
-        // $logo = "<img src='".$destinationPath."' style='margin-right: 10px; width: 40px; height: 40px;' alt='' />";
-
-        // $content = "Hello";
-        // $response = Http::withHeaders([
-        //     'Accept' => 'application/json',
-        //     'Content-Type' => 'text/html; charset=iso-8859-1',
-        //     'api-key' => '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',
-        //     'MIME-Version' => '1.0'
-        // ])->post('https://api.sendinblue.com/v3/smtp/email', [
-        //     'sender' => [
-        //         'name' => 'Yaablue',
-        //         'email' => 'admin@brandedstocklots.com'
-        //     ],
-        //     'to' => [
-        //         [
-        //             'email' => 'teammember0525@gmail.com'
-        //         ]
-        //     ],
-        //     'subject' => $subject,
-        //     'htmlContent' => $content,
-        //     'headers' => [
-        //         'charset' => 'iso-8859-1',
-        //         'MIME-Version' => '1.0'
-        //     ]
-        // ]);
-// -------------------------------------------------------------------
-
-        $email_data = array(
-            "sender"=>array("name"=>"brandedstocklots", "email"=>"Admin@brandedstocklots.com"),
-            "to"=>array(array("email"=>$email)),
-            "subject"=>"Your OTP is $otp",
-            "htmlContent"=>"<p>Your OTP is $otp</p>"
-        );
-        $email_data = json_encode($email_data);
-        $headers = array(
-            "accept: application/json",
-            "content-type: application/json",
-            "api-key: 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"
-        );
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.sendinblue.com/v3/smtp/email",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => $email_data,
-            CURLOPT_HTTPHEADER => $headers
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        // if ($err) {
-        //     echo "cURL Error #:" . $err;
-        // } else {
-        //     echo "Email sent successfully.";
-        // }
-
-// ------------------------------------------------------------------------
-        // SAVE DATA
-        try {
-            $record = DB::table('emailverifications')->where('email', $email)->first();
-            if($record) {
-                DB::table('emailverifications')->where('email', $email)->delete();
-            }
-            $emial_verification = new Emailverification();
-            $emial_verification->verify_code = $otp;
-            $emial_verification->email = $email;
-            $emial_verification->status = false;
-            $emial_verification->save();
-        } catch(Exception $e) { };
-
-        session(['signup_step' => 3]);
-
         return json_encode($return_msg);
-        
     }
 
     public function step4(Request $request)
     {
+
         $email = session('email');
+
+        // SERVER-SIDE VALIDATION
+        $validator = Validator::make($request->all(), [
+            'verify_code' => 'required|numeric',
+        ], [
+            'required' => trans('validation.required'),
+            'numeric' => trans('validation.numeric'),
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
 
         // GET VERIFY CODE FROM INPUT TAG
         $verify_code = $request->input('verify_code');
@@ -234,24 +159,20 @@ class SignupController extends Controller
 
         // CALCULATE TIME
         $time = $verify_email_otp_date - $created_at;
-
         if($time >= 300) {
+            $random_str = Str::random(12);
             DB::table('emailverifications')
-                ->where('email', $email)
-                ->delete();
+                ->where('email',$email)
+                ->update(['verify_code' => $random_str]);
 
             $verify_code_error = "The code is invalid";
             session()->flash('verify_code_error', $verify_code_error);
-            return redirect()
-                ->route('step4')
-                ->withInput();
+            return view('/step4');
 
         } else if ($verify_code != $correct_email_verify_code) {
             $verify_code_error = "The code is invalid";
             session()->flash('verify_code_error', $verify_code_error);
-            return redirect()
-                ->route('step4')
-                ->withInput();
+            return view('/step4');
         } else {
             DB::table('emailverifications')
                 ->where('email', $email)
@@ -513,21 +434,16 @@ class SignupController extends Controller
         return redirect('/step9');
     }
 
-    public function resendEmail (Request $request)
+    public function sendEmail (Request $request)
     {
-        // DELETE EXISTING RECORD IN DATABASE
+        // SEND OTP TO THE EMAIL ADDRESS
+        // GET EMAIL FROM SESSION
         $email = session('email');
-        $record = DB::table('emailverifications')->where('email', $email)->first();
-        if($record) {
-            DB::table('emailverifications')->where('email', $email)->delete();
-        }
-
-        // RESEND OTP TO THE EMAIL ADDRESS
         $otp = rand(100000, 999999);
         // Mail::to($email)->send(new OtpMail($otp));
 
         $email_data = array(
-            "sender"=>array("name"=>"brandedstocklots", "email"=>"sender@example.com"),
+            "sender"=>array("name"=>"BrandedStocklots", "email"=>"Admin@brandedstocklots.com"),
             "to"=>array(array("email"=>$email)),
             "subject"=>"Your OTP is $otp",
             "htmlContent"=>"<p>Your OTP is $otp</p>"
@@ -536,7 +452,7 @@ class SignupController extends Controller
         $headers = array(
             "accept: application/json",
             "content-type: application/json",
-            "api-key: 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"
+            "api-key: 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"
         );
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -556,8 +472,18 @@ class SignupController extends Controller
 
         curl_close($curl);
 
-        // CREATE NEW RECORD
+        // if ($err) {
+        //     echo "cURL Error #:" . $err;
+        // } else {
+        //     echo "Email sent successfully.";
+        // }
+
+        // SAVE DATA
         try {
+            $record = DB::table('emailverifications')->where('email', $email)->first();
+            if($record) {
+                DB::table('emailverifications')->where('email', $email)->delete();
+            }
             $emial_verification = new Emailverification();
             $emial_verification->verify_code = $otp;
             $emial_verification->email = $email;
@@ -565,9 +491,7 @@ class SignupController extends Controller
             $emial_verification->save();
         } catch(Exception $e) { };
 
-        
-
-        return redirect()->action([self::class, 'step4']);
+        return view('/step4');
     }
     
     public function resendPhone (Request $request)

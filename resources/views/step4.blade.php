@@ -50,9 +50,9 @@
                                         @csrf
                                         <label class="label-2">{{ __('Enter OTP')}}</label>
                                         <input type="text" name="verify_code" value="{{ old('verify_code') }}" class="custom-form-control" />
-                                        <div class="text-danger none" id="verify_code_error_number">This field must be number.</div>
-                                        <div class="text-danger none" id="verify_code_error_required">This field is required.</div>
-                                        <div class="text-danger none" id="verify_code_error_length">The code length must be 6.</div>
+                                        @error('verify_code')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         <div>
                                             @if (session()->has('verify_code_error'))
                                                 <div class="text-danger">
@@ -64,7 +64,7 @@
                                     </form>
                                     <p class="para-normal">By creating an account, you agree to BrandedStocklots's <a href="#">{{ __('Conditions of Use')}}</a> and <a href="#">{{ __('Privacy Notice')}}</a>.</p>
                                     <div class="center">
-                                        <a href="{{ route('resendEmail') }}" class="link-big">{{ __('Resend OTP')}}</a>    
+                                        <a href="{{ route('sendEmail') }}" class="link-big">{{ __('Resend OTP')}}</a>    
                                     </div>
                                 </div>
                             </div>

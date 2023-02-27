@@ -11,7 +11,7 @@ function onContinue() {
                 $('#alert_message').html(error);
             }
             else {
-                location.href="/step4";
+                location.href="step4";
             }
         },
         error: function(jqXhr, json, errorThrown){
