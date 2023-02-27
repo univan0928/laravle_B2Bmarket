@@ -46,7 +46,7 @@
                                         Please provide information per your official documents to get verified quicker.')}}
                                         <span>
                                             <a href="#" class="download-i mytooltip-2">
-                                                <img src="./img/download-i.svg" alt="download-i">
+                                                <img src="{{asset('img/download-i.svg')}}" alt="download-i">
                                                 <span class="mytooltiptext-2">{{ __('All registrants are verified to help
                                                     protect the identity of organizations like yours and to ensure we
                                                     can continue offering business-only benefits.')}}</span>
@@ -66,7 +66,7 @@
                                         <label class="label-1">{{ __('Business phone')}}
                                             <span class="subtitle-2">
                                                 <a href="#" class="download-i mytooltip-2">
-                                                    <img src="./img/download-i.svg" alt="download-i">
+                                                    <img src="{{asset('img/download-i.svg')}}" alt="download-i">
                                                     <span class="mytooltiptext-2">{{ __('The number you enter will be displayed in
                                                         the account details and might be visible to other users. We may
                                                         contact you for verification purposes.')}}</span>
@@ -89,7 +89,7 @@
                                         <label class="label-1">{{ __('Business name')}}
                                             <span class="subtitle-2">
                                                 <a href="#" class="download-i mytooltip-2">
-                                                    <img src="./img/download-i.svg" alt="download-i">
+                                                    <img src="{{asset('img/download-i.svg')}}" alt="download-i">
                                                     <span class="mytooltiptext-2 tooltip-extra">{{ __('Enter your full legal entity
                                                         name. If you are a sole proprietor or unregistered business, enter
                                                         the name you conduct business under. If you do not have a business

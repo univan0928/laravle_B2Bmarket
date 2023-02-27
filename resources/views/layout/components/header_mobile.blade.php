@@ -16,10 +16,10 @@
                     </div>
                 </li>
                 <li>
-                    <div class="ps-dropdown language"><a href="#"><img src="img/flag/en.png" alt="" />English</a>
+                    <div class="ps-dropdown language"><a href="#"><img src="{{asset('img/flag/en.png')}}" alt="" />English</a>
                         <ul class="ps-dropdown-menu">
-                            <li><a href="#"><img src="img/flag/germany.png" alt="" /> Germany</a></li>
-                            <li><a href="#"><img src="img/flag/fr.png" alt="" /> France</a></li>
+                            <li><a href="#"><img src="{{asset('img/flag/germany.png')}}" alt="" /> Germany</a></li>
+                            <li><a href="#"><img src="{{asset('img/flag/fr.png')}}" alt="" /> France</a></li>
                         </ul>
                     </div>
                 </li>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="navigation--mobile">
-        <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="img/brandoe.png" alt="" /></a>
+        <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="{{asset('img/brandoe.png')}}" alt="" /></a>
         </div>
         <div class="navigation__right">
             <div class="header__actions">
@@ -37,7 +37,7 @@
                         <div class="ps-cart__items">
                             <div class="ps-product--cart-mobile">
                                 <div class="ps-product__thumbnail"><a href="#"><img
-                                            src="img/products/clothing/7.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/clothing/7.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
                                             class="icon-cross"></i></a><a href="product-default.html">MVMTH
                                         Classical Leather Watch In Black</a>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="ps-product--cart-mobile">
                                 <div class="ps-product__thumbnail"><a href="#"><img
-                                            src="img/products/clothing/5.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/clothing/5.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
                                             class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen
                                         Blend Caro Pane Shirt</a>

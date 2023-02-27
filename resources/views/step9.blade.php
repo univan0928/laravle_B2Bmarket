@@ -67,15 +67,15 @@
             <br><br>
             <div class="row ps-100">
                 <div class="col-md-4 col-sm-12 center">
-                    <img src="./img/price-comparison-blue.svg" alt="price" class="account-image">
+                    <img src="{{asset('img/price-comparison-blue.svg')}}" alt="price" class="account-image">
                     <p class="link-business-text-3">{{ __('Manage your business profile')}}</p>
                 </div>
                 <div class="col-md-4 col-sm-12 center">
-                    <img src="./img/centralize-tailspend-blue.svg" alt="centralize" class="account-image">
+                    <img src="{{asset('img/centralize-tailspend-blue.svg')}}" alt="centralize" class="account-image">
                     <p class="link-business-text-3">{{ __('0% Commission')}}</p>
                 </div>
                 <div class="col-md-4 col-sm-12 center">
-                    <img src="./img/gusto-callout1-blue.svg" alt="gusto" class="account-image">
+                    <img src="{{asset('img/gusto-callout1-blue.svg')}}" alt="gusto" class="account-image">
                     <p class="link-business-text-3">{{ __('Get quotes from sellers')}}</p>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="bd-b-blue pr-20 center pb-30">
-                                <img src="./img/business-only-prices-orange.svg" alt="business-only-prices-orange"
+                                <img src="{{asset('img/business-only-prices-orange.svg')}}" alt="business-only-prices-orange"
                                     class="account-image">
                             </div>
                             <p class="link-business-text-3 pt-20">{{ __('Savings and Discounts')}}</p>
@@ -100,36 +100,36 @@
                                 Quantity Discounts, and Progressive Discounts.')}}</p>
                             <a href="#" class="link-4">
                                 {{ __('Discover different ways to save')}}
-                                <img src="./img/icon-arrow-ocean.svg" alt="icon-arrow-ocean">
+                                <img src="{{asset('img/icon-arrow-ocean.svg')}}" alt="icon-arrow-ocean">
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="bd-b-blue pr-20 center pb-30">
-                                <img src="./img/business-prime-orange.svg" alt="business-prime-orange"
+                                <img src="{{asset('img/business-prime-orange.svg')}}" alt="business-prime-orange"
                                     class="account-image">
                             </div>
                             <p class="link-business-text-3 pt-20">{{ __('Buyers Club')}}</p>
                             <p class="link-business-text-4">{{ __('Join the Buyers club and receive exclusive benefits when sourcing from BrandedStocklots.com')}}</p>
                             <a href="#" class="link-4">
                                 {{ __('Buyers Club benefits')}}
-                                <img src="./img/icon-arrow-ocean.svg" alt="icon-arrow-ocean">
+                                <img src="{{asset('img/icon-arrow-ocean.svg')}}" alt="icon-arrow-ocean">
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="bd-b-blue pr-20 center pb-30">
-                                <img src="./img/tax-exemption-orange.svg" alt="tax-exemption-orange"
+                                <img src="{{asset('img/tax-exemption-orange.svg')}}" alt="tax-exemption-orange"
                                     class="account-image">
                             </div>
                             <p class="link-business-text-3 pt-20">{{ __('0% Commission')}}</p>
                             <p class="link-business-text-4">{{ __('Sourcing on brandedstocklots keeps you ahead of your competitors ')}}</p>
                             <a href="#" class="link-4">
                                 {{ __('Learn more')}}
-                                <img src="./img/icon-arrow-ocean.svg" alt="icon-arrow-ocean">
+                                <img src="{{asset('img/icon-arrow-ocean.svg')}}" alt="icon-arrow-ocean">
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="bd-b-blue pr-20 center pb-30">
-                                <img src="./img/purchasing-system-orange.svg" alt="purchasing-system-orange"
+                                <img src="{{asset('img/purchasing-system-orange.svg')}}" alt="purchasing-system-orange"
                                     class="account-image">
                             </div>
                             <p class="link-business-text-3 pt-20">{{ __('Business features')}}</p>
@@ -137,7 +137,7 @@
                                 as multi-user setting and business analytics.')}} </p>
                             <a href="#" class="link-4">
                                 {{ __('See purchasing features')}}
-                                <img src="./img/icon-arrow-ocean.svg" alt="icon-arrow-ocean">
+                                <img src="{{asset('img/icon-arrow-ocean.svg')}}" alt="icon-arrow-ocean">
                             </a>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12">
                     <div class="pr-20 center pb-30">
-                        <img src="./img/business-only-prices-orange.svg" alt="business-only-prices-orange"
+                        <img src="{{asset('img/business-only-prices-orange.svg')}}" alt="business-only-prices-orange"
                             class="account-image">
                     </div>
                     <p class="text-bold link-business-text-1 pt-20">{{ __('Quick tips')}}</p>
@@ -166,7 +166,7 @@
                     <p class="link-business-text-4">{{ __('With your bulk uploader you can easily import multiple ads using CSV/XML format.')}} </p>
                     <a href="#" class="link-4">
                         {{ __('Discover Bulk Uploader')}}
-                        <img src="./img/icon-arrow-ocean.svg" alt="icon-arrow-ocean">
+                        <img src="{{asset('img/icon-arrow-ocean.svg')}}" alt="icon-arrow-ocean">
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-12">
@@ -174,7 +174,7 @@
                     <p class="link-business-text-4">{{ __('Use our BrandedStocklots Messenger to connect with buyers & sellers all over the world. ')}}</p>
                     <a href="#" class="link-4">
                         {{ __('Discover Messenger')}}
-                        <img src="./img/icon-arrow-ocean.svg" alt="icon-arrow-ocean">
+                        <img src="{{asset('img/icon-arrow-ocean.svg')}}" alt="icon-arrow-ocean">
                     </a>
                 </div>
             </div>

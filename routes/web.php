@@ -77,3 +77,6 @@ Route::get('/resendEmail', [SignupController::class, 'resendEmail'])->name('rese
 Route::get('/resendPhone', [SignupController::class, 'resendPhone'])->name('resendPhone');
 Route::get('/upload', [SignupController::class, 'upload'])->name('upload');
 
+Route::get('/signin/step1', function () {
+    return view('signin.step1');
+});

@@ -267,7 +267,7 @@
                             </li>
                         </ul>
                     </div>
-                </div><a class="ps-logo" href="index.html"><img src="img/brandoe.png" alt="" /></a>
+                </div><a class="ps-logo" href="index.html"><img src="{{asset('img/brandoe.png')}}" alt="" /></a>
             </div>
             <div class="header__center">
                 <form class="ps-form--quick-search" action="index.html" method="get">
@@ -297,7 +297,7 @@
                         <div class="ps-panel__content">
                             <div class="ps-product ps-product--wide ps-product--search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                            src="img/products/arrivals/1.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/arrivals/1.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                         href="product-default.html">Apple iPhone Retina 6s Plus 32GB</a>
                                     <div class="ps-product__rating">
@@ -314,7 +314,7 @@
                             </div>
                             <div class="ps-product ps-product--wide ps-product--search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                            src="img/products/arrivals/1.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/arrivals/1.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                         href="product-default.html">Apple iPhone Retina 6s Plus 64GB</a>
                                     <div class="ps-product__rating">
@@ -331,7 +331,7 @@
                             </div>
                             <div class="ps-product ps-product--wide ps-product--search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                            src="img/products/arrivals/1.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/arrivals/1.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                         href="product-default.html">Apple iPhone Retina 6s Plus 128GB</a>
                                     <div class="ps-product__rating">
@@ -348,7 +348,7 @@
                             </div>
                             <div class="ps-product ps-product--wide ps-product--search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                            src="img/products/arrivals/2.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/arrivals/2.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                         href="product-default.html">Marshall Kilburn Portable Wireless Speaker</a>
                                     <div class="ps-product__rating">
@@ -365,7 +365,7 @@
                             </div>
                             <div class="ps-product ps-product--wide ps-product--search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                            src="img/products/arrivals/3.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/arrivals/3.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                         href="product-default.html">Herschel Leather Duffle Bag In Brown Color</a>
                                     <div class="ps-product__rating">
@@ -382,7 +382,7 @@
                             </div>
                             <div class="ps-product ps-product--wide ps-product--search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                            src="img/products/arrivals/4.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/arrivals/4.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                         href="product-default.html">Xbox One Wireless Controller Black Color</a>
                                     <div class="ps-product__rating">
@@ -399,7 +399,7 @@
                             </div>
                             <div class="ps-product ps-product--wide ps-product--search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                            src="img/products/arrivals/5.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/arrivals/5.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                         href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
                                     <div class="ps-product__rating">
@@ -416,7 +416,7 @@
                             </div>
                             <div class="ps-product ps-product--wide ps-product--search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                            src="img/products/arrivals/6.jpg" alt="" /></a></div>
+                                            src="{{asset('img/products/arrivals/6.jpg')}}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                         href="product-default.html">Sound Intone I65 Earphone White Version</a>
                                     <div class="ps-product__rating">
@@ -455,7 +455,7 @@
                             <div class="ps-cart__items">
                                 <div class="ps-product--cart-mobile">
                                     <div class="ps-product__thumbnail"><a href="#"><img
-                                                src="img/products/clothing/7.jpg" alt="" /></a></div>
+                                                src="{{asset('img/products/clothing/7.jpg')}}" alt="" /></a></div>
                                     <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
                                                 class="icon-cross"></i></a><a href="product-default.html">MVMTH
                                             Classical Leather Watch In Black</a>
@@ -464,7 +464,7 @@
                                 </div>
                                 <div class="ps-product--cart-mobile">
                                     <div class="ps-product__thumbnail"><a href="#"><img
-                                                src="img/products/clothing/5.jpg" alt="" /></a></div>
+                                                src="{{asset('img/products/clothing/5.jpg')}}" alt="" /></a></div>
                                     <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
                                                 class="icon-cross"></i></a><a href="product-default.html">Sleeve
                                             Linen Blend Caro Pane Shirt</a>
@@ -789,11 +789,11 @@
                         </div>
                     </li>
                     <li>
-                        <div class="ps-dropdown language"><a href="#"><img src="img/flag/en.png"
+                        <div class="ps-dropdown language"><a href="#"><img src="{{asset('img/flag/en.png')}}"
                                     alt="" />English</a>
                             <ul class="ps-dropdown-menu">
-                                <li><a href="#"><img src="img/flag/germany.png" alt="" /> Germany</a></li>
-                                <li><a href="#"><img src="img/flag/fr.png" alt="" /> France</a></li>
+                                <li><a href="#"><img src="{{asset('img/flag/germany.png')}}" alt="" /> Germany</a></li>
+                                <li><a href="#"><img src="{{asset('img/flag/fr.png')}}" alt="" /> France</a></li>
                             </ul>
                         </div>
                     </li>

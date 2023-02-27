@@ -26,7 +26,7 @@
                 <aside class="widget widget_footer widget_contact-us">
                     <h4 class="widget-title">About BrandedStocklots</h4>
                     <div class="widget_content">
-                        <a class="ps-logo" href="index.html"><img src="img/brandoefooter.png" alt="" /></a>
+                        <a class="ps-logo" href="index.html"><img src="{{asset('img/brandoefooter.png')}}" alt="" /></a>
                         <p class="mt-10">BrandedStocklots.com is the largest <br />
                             international platform to find and buy <br />
                             your goods for attractive prices. <br />
@@ -113,10 +113,10 @@
             </div>
             <div class="ps-footer__copyright">
                 <p>&copy; 2023 BrandedStocklots.com All Rights Reserved</p>
-                <p><span>Payment Methods:</span><a href="#"><img src="img/payment-method/1.jpg" alt="" /></a><a
-                        href="#"><img src="img/payment-method/2.jpg" alt="" /></a><a href="#"><img
-                            src="img/payment-method/3.jpg" alt="" /></a><a href="#"><img src="img/payment-method/4.jpg"
-                            alt="" /></a><a href="#"><img src="img/payment-method/5.jpg" alt="" /></a></p>
+                <p><span>Payment Methods:</span><a href="#"><img src="{{asset('img/payment-method/1.jpg')}}" alt="" /></a><a
+                        href="#"><img src="{{asset('img/payment-method/2.jpg')}}" alt="" /></a><a href="#"><img
+                            src="{{asset('img/payment-method/3.jpg')}}" alt="" /></a><a href="#"><img src="{{asset('img/payment-method/4.jpg')}}"
+                            alt="" /></a><a href="#"><img src="{{asset('img/payment-method/5.jpg')}}" alt="" /></a></p>
             </div>
         </div>
     </footer>
@@ -130,7 +130,7 @@
             <div class="ps-cart--mobile">
                 <div class="ps-cart__content">
                     <div class="ps-product--cart-mobile">
-                        <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg"
+                        <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('img/products/clothing/7.jpg')}}"
                                     alt=""></a></div>
                         <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
                                     class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical
@@ -478,9 +478,9 @@
                     <div class="ps-product__header">
                         <div class="ps-product__thumbnail" data-vertical="false">
                             <div class="ps-product__images" data-arrow="true">
-                                <div class="item"><img src="img/products/detail/fullwidth/1.jpg" alt=""></div>
-                                <div class="item"><img src="img/products/detail/fullwidth/2.jpg" alt=""></div>
-                                <div class="item"><img src="img/products/detail/fullwidth/3.jpg" alt=""></div>
+                                <div class="item"><img src="{{asset('img/products/detail/fullwidth/1.jpg')}}" alt=""></div>
+                                <div class="item"><img src="{{asset('img/products/detail/fullwidth/2.jpg')}}" alt=""></div>
+                                <div class="item"><img src="{{asset('img/products/detail/fullwidth/3.jpg')}}" alt=""></div>
                             </div>
                         </div>
                         <div class="ps-product__info">
