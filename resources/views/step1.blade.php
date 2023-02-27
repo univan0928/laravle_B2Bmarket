@@ -43,9 +43,9 @@
                         <div class="col-md-6 pl-0 pr-0">
                             <div class="card">
                                 <div class="pr-45 pl-45 pt-30 pb-30 bg-white">
-                                    <p class="top-title mb-15">{{ __('Let’s create your Branded Stocklots account')}}</p>
+                                    <p class="top-title mb-15">Let's create your Branded Stocklots account</p>
                                     <p class="label-1">Enter the email you'd like to use for your business account</p>
-                                    <form action="{{ route('stepOne') }}" method="POST" id="myForm">
+                                    <form action="{{ route('step1') }}" method="POST" id="myForm">
                                         @csrf
                                         <input type="email" id="business_email" name="business_email" value="{{ old('business_email') }}" placeholder="Enter email" class="custom-form-control" />
                                         <div class="text-danger none" id="business_email_error">The business_email field is required</div>
@@ -55,13 +55,13 @@
                                         <div class="selector pt-15">
                                             <p for="select-name"><span>*</span>{{ __('Please select trade role:')}}</p>
                                             <div class="form-group">
-                                                <input type="radio" name="role" value="Buyer"><label for="Buyer" required>{{ __('Buyer')}}</label>
+                                                <input type="radio" name="role" value="Buyer" {{ old('role') == 'Buyer' ? 'checked' : '' }}><label for="Buyer" required>{{ __('Buyer')}}</label>
                                             </div>
                                             <div class="form-group">
-                                                <input type="radio" name="role" value="Seller"><label for="Seller">{{ __('Seller')}}</label>
+                                                <input type="radio" name="role" value="Seller" {{ old('role') == 'Seller' ? 'checked' : '' }}><label for="Seller">{{ __('Seller')}}</label>
                                             </div>
                                             <div class="form-group">
-                                                <input type="radio" name="role" value="Both"><label for="Both">{{ __('Both')}}</label>
+                                                <input type="radio" name="role" value="Both" {{ old('role') == 'Both' ? 'checked' : '' }}><label for="Both">{{ __('Both')}}</label>
                                             </div>
                                         </div>
                                         <div class="text-danger none" id="role_error">The role field is required</div>
@@ -94,7 +94,7 @@
                                     <div class="card-content">
                                         <img src="./img/icon-addusers.svg" alt="icon-savings" class="pr-10">
                                         <div>
-                                            <p class="text-white text-bold subtitle">{{ _('Connect your people')}}</p>
+                                            <p class="text-white text-bold subtitle">{{ __('Connect your people')}}</p>
                                             <p class="text-white subtext">{{ __('Create groups, share payment methods, and manage supplies across locations.')}}</p>
                                         </div>
                                     </div>
@@ -123,5 +123,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/stepOne.js') }}"></script>
+    <script src="{{ asset('/js/validation/step1.js') }}"></script>
 @endsection

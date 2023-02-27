@@ -1,3 +1,24 @@
+$( document ).ready(function() {
+
+    // GET LOCALSTORAGE DATA
+
+    var data = {
+        business_email: localStorage.getItem('business_email'),
+        role: localStorage.getItem('role'),
+        name: localStorage.getItem('name'),
+        email: localStorage.getItem('email'),
+        password: localStorage.getItem('password'),
+        mobile_number: localStorage.getItem('mobile_number'),
+    }
+
+    $("#business_email").val(data.business_email);
+    $("#role").val(data.role);
+    $("#name").val(data.name);
+    $("#email").val(data.email);
+    $("#password").val(data.password);
+    $("#mobile_number").val(data.mobile_number);
+});
+
 $('form').submit(function(e) {
     const first_last_name = $("input[name='first_last_name']").val();
     const business_phone = $("input[name='business_phone']").val();
@@ -87,5 +108,6 @@ $('form').submit(function(e) {
         $("#state_error").addClass('none');
         localStorage.setItem('state', state);
     }
-    
+
+ 
 });

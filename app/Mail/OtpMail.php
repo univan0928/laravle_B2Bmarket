@@ -9,7 +9,9 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendOtp extends Mailable
+
+
+class OtpMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -20,14 +22,14 @@ class SendOtp extends Mailable
      */
     public function __construct($otp)
     {
-        //
+        // $this->otp = mt_rand(100000, 999999);
         $this->otp = $otp;
     }
 
-    public function build()
-    {
-        return $this->view('/send_otp')
-                    ->subject('Your OTP is ' . $this->otp);
+    public function build() {
+        return $this->view('otp')
+            ->subject('Your OTP')
+            ->with(['otp' , $this->otp]);
     }
 
     /**
@@ -35,8 +37,9 @@ class SendOtp extends Mailable
      */
     public function envelope(): Envelope
     {
+
         return new Envelope(
-            subject: 'Send Otp',
+            subject: 'Otp Mail',
         );
     }
 
@@ -46,7 +49,7 @@ class SendOtp extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: '/otp',
         );
     }
 

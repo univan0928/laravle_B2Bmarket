@@ -45,16 +45,26 @@
                             <div class="card">
                                 <div class="pr-45 pl-45 pt-30 pb-30 bg-white">
                                     <p class="title mb-15">{{ __('Verify email address')}}</p>
-                                    <p class="subtitle-2">To verify your email, we've sent a One Time Password (OTP) to teammember0525@gmail.com <a href="#" class="link-normal">{{ __('(Change)')}}</a> </p>
-                                    <form action="{{ route('stepFour') }}" method="POST">
+                                    <p class="subtitle-2">To verify your email, we've sent a One Time Password (OTP) to <span class="subtitle-2" id="email_show"></span> </p>
+                                    <form action="{{ route('step4') }}" method="POST">
                                         @csrf
                                         <label class="label-2">{{ __('Enter OTP')}}</label>
-                                        <input type="email" name="otp_email" class="custom-form-control" />
+                                        <input type="text" name="verify_code" value="{{ old('verify_code') }}" class="custom-form-control" />
+                                        <div class="text-danger none" id="verify_code_error_number">This field must be number.</div>
+                                        <div class="text-danger none" id="verify_code_error_required">This field is required.</div>
+                                        <div class="text-danger none" id="verify_code_error_length">The code length must be 6.</div>
+                                        <div>
+                                            @if (session()->has('verify_code_error'))
+                                                <div class="text-danger">
+                                                    {{ session('verify_code_error') }}
+                                                </div>
+                                            @endif
+                                        </div>
                                         <button type="submit" class="b-btn mt-15 mb-15">{{ __('Create your BrandedStocklots account')}}</button>
                                     </form>
                                     <p class="para-normal">By creating an account, you agree to BrandedStocklots's <a href="#">{{ __('Conditions of Use')}}</a> and <a href="#">{{ __('Privacy Notice')}}</a>.</p>
                                     <div class="center">
-                                        <a href="#" class="link-big">{{ __('Resend OTP')}}</a>    
+                                        <a href="{{ route('resendEmail') }}" class="link-big">{{ __('Resend OTP')}}</a>    
                                     </div>
                                 </div>
                             </div>
@@ -64,4 +74,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('custom_js')
+    <!-- CLIENT-SIDE VALIDATION -->
+    <script src="{{ asset('/js/validation/step4.js') }}"></script>
 @endsection

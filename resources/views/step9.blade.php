@@ -59,7 +59,7 @@
                     <p class="link-business-text-2">{{ __('Many stock available, different categories')}}  </p>
                     <br>
                     <div class="row">
-                        <button class="account-button">{{ __('Setup Your Store')}}</button>
+                        <button class="account-button">{{ __('Start now')}}</button>
                     </div>
                 </div>
             </div>

@@ -49,7 +49,7 @@
                                     <p class="subtitle-2">{{ __('Choose any one of the following options to help speed up the')}}
                                         <a href="#" class="link-big extra link-title-2">{{ __('verification process')}}</a></p>
 
-                                    <form action="{{ route('stepSeven') }}" method="POST">
+                                    <form action="{{ route('step8') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="card mt-15">
                                             <button type="button" class="accordion">{{ __('Tax ID, EIN, or SSN')}}
@@ -103,32 +103,24 @@
                                                 <i class="icon-chevron-down"></i>
                                             </button>
                                             <div class="panel">
-                                                <p class="subtitle-2 pt-10">{{ __('Upload a document on official letterhead that
-                                                    shows your organization’s status.')}}</p>
+                                                <p class="subtitle-2 pt-10">Upload a document on official letterhead that
+                                                    shows your organization's status.</p>
                                                 <p class="subtitle-2 pt-10">{{ __('Official documents that contain your EIN, or
                                                     sole proprietor, or individual status.')}}</p>
-                                                <div class="input-file pb-20">
-                                                    <input type="file" name="file" class="fileinput">
-                                                    <div class="layout5">
-                                                        <input type="text" class="input-file-text" disabled>
-                                                        <span class="input-file-btn">{{ __('Choose file')}}</span>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="file" id="file1" name="file1">
+                                                @error('file1')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                                 <p class="para-normal">{{ __('PDF or JPEG format, size limit of 10 MB')}}</p>
                                                 <p class="subtitle-2 pt-10">{{ __('Official documents that contain your EIN, or
                                                     sole proprietor, or individual status.')}}</p>
-                                                <div class="input-file pb-20">
-                                                    <!-- <input type="file" name="file" class="fileinput"> -->
-                                                    <!-- <span class="input-file-text"></span> -->
-                                                    <div class="layout5">
-                                                        <input type="text" class="input-file-text" disabled>
-                                                        <span class="input-file-btn">{{ __('Choose file')}}</span>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="file" id="file2" name="file2">
+                                                @error('file2')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                                 <p class="para-normal">{{ __('PDF or JPEG format, size limit of 10 MB')}}</p>
                                             </div>
                                         </div>
-
                                         <button type="submit" class="b-btn mt-15 mb-15">{{ __('Submit')}}</button>
                                     </form>
 
@@ -146,5 +138,5 @@
 @section('custom_js')
     <script src="{{ asset('/js/custom.js') }}"></script>
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/stepSeven.js') }}"></script>
+    <script src="{{ asset('/js/validation/step8.js') }}"></script>
 @endsection

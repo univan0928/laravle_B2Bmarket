@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\SMSController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,48 +16,64 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('stepOne');
-});
-Route::get('/stepOne', function () {
-    return view('stepOne');
-});
-Route::get('/stepTwo', function () {
-    return view('stepTwo');
-});
-Route::get('/stepThree', function () {
-    return view('stepThree');
-});
-Route::get('/stepFour', function () {
-    return view('/stepFour');
-});
-Route::get('/stepFive', function () {
-    return view('/stepFive');
-});
-Route::get('/stepSix', function () {
-    return view('/stepSix');
-});
-Route::get('/stepSeven', function () {
-    return view('/stepSeven');
-});
-Route::get('/stepEight', function () {
-    return view('/stepEight');
+    return redirect('step1');
+})->middleware('initial');
+
+Route::get('/step1', function () {
+    return view('step1');
+})->middleware('initial');
+
+Route::get('/step2', function () {
+    return view('step2');
+})->middleware('check.progress');
+
+Route::get('/step3', function () {
+    return view('step3');
+})->middleware('check.progress');
+
+Route::get('/step4', function () {
+    return view('/step4');
+})->middleware('check.progress');
+
+Route::get('/step5', function () {
+    return view('/step5');
+})->middleware('check.progress');
+
+Route::get('/step6', function () {
+    return view('/step6');
+})->middleware('check.progress');
+
+Route::get('/step7', function () {
+    return view('/step7');
+})->middleware('check.progress');
+
+Route::get('/step8', function () {
+    return view('/step8');
+})->middleware('check.progress');
+
+Route::get('/step9', function () {
+    return view('/step9');
+})->middleware('check.progress');
+
+Route::get('/step9', function () {
+    return view('step9');
+})->name('step9')->middleware('check.progress');
+
+Route::post('otp', function () {
+    return view('/otp');
 });
 
-Route::get('/send_otp', function () {
-    return view('/send_otp');
-});
 
 
+Route::post('/step1', [SignupController::class, 'step1'])->name('step1');
+Route::post('/step2', [SignupController::class, 'step2'])->name('step2');
+Route::post('/step3', [SignupController::class, 'step3'])->name('step3');
+Route::post('/step4', [SignupController::class, 'step4'])->name('step4');
+Route::post('/step5', [SignupController::class, 'step5'])->name('step5');
+Route::post('/step6', [SignupController::class, 'step6'])->name('step6');
+Route::post('/step7', [SignupController::class, 'step7'])->name('step7');
+Route::post('/step8', [SignupController::class, 'step8'])->name('step8');
+Route::get('/resendEmail', [SignupController::class, 'resendEmail'])->name('resendEmail');
+Route::get('/resendPhone', [SignupController::class, 'resendPhone'])->name('resendPhone');
+Route::get('/upload', [SignupController::class, 'upload'])->name('upload');
 
-
-
-
-// Route::get('/stepOne', [SignupController::class, 'index']);
-
-Route::post('/stepOne', [SignupController::class, 'stepOne'])->name('stepOne');
-Route::post('/stepTwo', [SignupController::class, 'stepTwo'])->name('stepTwo');
-Route::post('/stepThree', [SignupController::class, 'stepThree'])->name('stepThree');
-Route::post('/stepFour', [SignupController::class, 'stepFour'])->name('stepFour');
-
-Route::post('/stepSix', [SignupController::class, 'stepSix'])->name('stepSix');
-Route::post('/stepSeven', [SignupController::class, 'stepSeven'])->name('stepSeven');

@@ -7,47 +7,39 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
-// use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Session\Store;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
+use App\Mail\OtpMail;
+use App\Models\Emailverification;
+use App\Models\Phoneverification;
+use App\Models\User;
 
-use App\Mail\SendOTP;
+
+
+use GuzzleHttp\Client;
+
 
 require_once app_path().'/Constant/constants.php';
 
 class SignupController extends Controller
 {
-
-    public function stepOne(Request $request)
+    public function step1(Request $request)
     {
-        // VALIDATION (METHOD 1)
-        // $rules = [
-        //     'business_email'=>'required|email',
-        //     'role' => 'required'
-        // ];
-        // $messages = [
-        //     'business_email.required' => 'The email field is required.',
-        //     'business_email.email' => 'Please enter a valid email address.',
-        //     'role.required' => 'The role field is required.'
-        // ];
-        // $validator = Validator::make($request->all(), $rules, $messages);
-        // if ($validator->fails()) {
-        //     return redirect()
-        //     ->back()
-        //     ->withErrors($validator)
-        //     ->withInput();
-        // }
 
-        
-
-        // SERVER-SIDE VALIDATION (METHOD 2)
+        // SERVER-SIDE VALIDATION
         // resources/lang/en/validation.php
         $validator = Validator::make($request->all(), [
-            'business_email' => 'required|email',
+            'business_email' => 'required|email|unique:users,business_email',
             'role' => 'required'
         ], [
             'required' => trans('validation.required'),
-            'email' => trans('validation.email')
+            'email' => trans('validation.email'),
+            'unique' => trans('validation.unique')
         ]);
 
         if ($validator->fails()) {
@@ -57,45 +49,21 @@ class SignupController extends Controller
             ->withInput();
         }
 
+        // SET SIGNUP STEP
+        session(['signup_step' => 1]);
 
-        // GET BUSINESS_EMAIL, ROLE DATA
-        // $business_email = $request->business_email;
-        // $role = $request->role;
-        
-        // SAVE DATA IN SESSION (METHOD 1)
-        // session([
-        //     'business_email' => $business_email,
-        //     'role' => $role
-        // ]);
-
-
-
-
-        // SAVE DATA IN SESSION (METHOD 2)
-
-        // $request->session()->put('data', $validationData);
-
-        // // Retrieve the data from the session
-        // $value1 = session('key1');
-        // $value2 = session('key2');
-        // $value3 = session('key3');
-
-        // GET SESSION DATA
-        // $value = $request->session()->get('data');
-
-        // GET ALL SESSION DATA
-        // $value = $request->session()->all();
-        
-        return redirect('/stepTwo');
+        return redirect('/step2');
     }
 
-    public function stepTwo(Request $request)
+    public function step2(Request $request)
     {
+
+        // CHECK SIGNUP STEP
 
         // SERVER-SIDE VALIDATION
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:40',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => [
                 'required',
                 'regex:/^(?=.*[A-Z])(?=.*\d).+$/',
@@ -106,7 +74,8 @@ class SignupController extends Controller
             'required' => trans('validation.required'),
             'email' => trans('validation.email'),
             'min' => trans('validation.min'),
-            'confirmed' => trans('validation.confirmed')
+            'confirmed' => trans('validation.confirmed'),
+            'unique' => trans('validation.unique')
         ]);
         
         if ($validator->fails()) {
@@ -116,38 +85,27 @@ class SignupController extends Controller
             ->withInput();
         }
 
+        // GET EMAIL FROM $request
+        $email = $request -> input('email');
 
-        // GET DATA FROM $request
-        // $name = $request -> input('name');
-        // $email = $request -> input('email');
-        // $password = $request -> input('password');
+        session(['email' => $email]);
+        session(['signup_step' => 2]);
 
-        // SAVE DATA IN SESSION (METHOD 1)
-        // session([
-        //     'name' => $name,
-        //     'email' => $email,
-        //     'password' => $password
-        // ]);
-
-        return redirect('/stepThree');
+        return redirect('/step3');
     }
 
-    public function stepThree(Request $request)
+    public function step3(Request $request)
     {
-
-        // HCAPTCHA VERIFICATION
-        // Hcaptcha info
-        // site_key : e40b0c3e-bedf-4d07-9dea-af28a5a58a35
-        // secret_key : 0x3f81316467467b489376d1bcf1DC44eE16A5430b
 
         $captchaResponse = $request -> input('h-captcha-response');
         
         if(isset($captchaResponse) && !empty($captchaResponse)){
             $secret = SECRET;
             $remote_address = $_SERVER['REMOTE_ADDR'];
+
             // This is hcaptcha url
             $verify_url = "https://hcaptcha.com/siteverify?secret=".$secret."&response=".$captchaResponse."&remoteip=".$remote_address;
-            $response = file_get_contents($verify_url); # Get token from post data with key 'h-captcha-response' and Make a POST request with data payload to hCaptcha API endpoint
+            $response = file_get_contents($verify_url);
             $responseData = json_decode($response);
             $success_msg="";
             $err_msg="";
@@ -166,28 +124,261 @@ class SignupController extends Controller
             'success'   =>  $success_msg ?? ""
         );
 
-        return json_encode($return_msg);
-    }
 
-    public function stepFour(Request $request)
-    {
-        // GET ALL SESSION DATA
-        // $value = $request->session()->all();
-        // $email = session('email');
-        // $otp = Str::random(6);
+        // SEND OTP TO THE EMAIL ADDRESS
+        // GET EMAIL FROM SESSION
+        $email = session('email');
+        $otp = rand(100000, 999999);
+// -----------------------------------------------------------------------------
         // Mail::to($email)->send(new OtpMail($otp));
+// -----------------------------------------------------------------------------
+        // $destinationPath = asset('assets/first_logo.png');
 
-        $email = $request->input('otp_email');
+        // $subject = "Brandedstocklots";
+        // $logo = "<img src='".$destinationPath."' style='margin-right: 10px; width: 40px; height: 40px;' alt='' />";
 
-        $otp = rand(1000, 9999);
-        // $to_email = 'recipient-email-address';
-        Mail::to($email)->send(new SendOTP($otp));
-        return view('send_otp');        
+        // $content = "Hello";
+        // $response = Http::withHeaders([
+        //     'Accept' => 'application/json',
+        //     'Content-Type' => 'text/html; charset=iso-8859-1',
+        //     'api-key' => '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',
+        //     'MIME-Version' => '1.0'
+        // ])->post('https://api.sendinblue.com/v3/smtp/email', [
+        //     'sender' => [
+        //         'name' => 'Yaablue',
+        //         'email' => 'admin@brandedstocklots.com'
+        //     ],
+        //     'to' => [
+        //         [
+        //             'email' => 'teammember0525@gmail.com'
+        //         ]
+        //     ],
+        //     'subject' => $subject,
+        //     'htmlContent' => $content,
+        //     'headers' => [
+        //         'charset' => 'iso-8859-1',
+        //         'MIME-Version' => '1.0'
+        //     ]
+        // ]);
+// -------------------------------------------------------------------
+
+        $email_data = array(
+            "sender"=>array("name"=>"brandedstocklots", "email"=>"Admin@brandedstocklots.com"),
+            "to"=>array(array("email"=>$email)),
+            "subject"=>"Your OTP is $otp",
+            "htmlContent"=>"<p>Your OTP is $otp</p>"
+        );
+        $email_data = json_encode($email_data);
+        $headers = array(
+            "accept: application/json",
+            "content-type: application/json",
+            "api-key: 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"
+        );
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.sendinblue.com/v3/smtp/email",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $email_data,
+            CURLOPT_HTTPHEADER => $headers
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        // if ($err) {
+        //     echo "cURL Error #:" . $err;
+        // } else {
+        //     echo "Email sent successfully.";
+        // }
+
+// ------------------------------------------------------------------------
+        // SAVE DATA
+        try {
+            $record = DB::table('emailverifications')->where('email', $email)->first();
+            if($record) {
+                DB::table('emailverifications')->where('email', $email)->delete();
+            }
+            $emial_verification = new Emailverification();
+            $emial_verification->verify_code = $otp;
+            $emial_verification->email = $email;
+            $emial_verification->status = false;
+            $emial_verification->save();
+        } catch(Exception $e) { };
+
+        session(['signup_step' => 3]);
+
+        return json_encode($return_msg);
+        
     }
 
-
-    public function stepSix(Request $request)
+    public function step4(Request $request)
     {
+        $email = session('email');
+
+        // GET VERIFY CODE FROM INPUT TAG
+        $verify_code = $request->input('verify_code');
+
+        // GET CURRENT DATE
+        $verify_email_otp_date = strtotime(date('Y-m-d H:i:s', strtotime('now')));
+
+        $record = DB::table('emailverifications')->where('email', $email)->first();
+        $created_at = strtotime($record->created_at);
+        $correct_email_verify_code = $record->verify_code;
+
+        // CALCULATE TIME
+        $time = $verify_email_otp_date - $created_at;
+
+        if($time >= 300) {
+            DB::table('emailverifications')
+                ->where('email', $email)
+                ->delete();
+
+            $verify_code_error = "The code is invalid";
+            session()->flash('verify_code_error', $verify_code_error);
+            return redirect()
+                ->route('step4')
+                ->withInput();
+
+        } else if ($verify_code != $correct_email_verify_code) {
+            $verify_code_error = "The code is invalid";
+            session()->flash('verify_code_error', $verify_code_error);
+            return redirect()
+                ->route('step4')
+                ->withInput();
+        } else {
+            DB::table('emailverifications')
+                ->where('email', $email)
+                ->update(['status' => true]);
+            
+            session(['signup_step' => 4]);
+
+            return redirect('/step5');
+        }
+    }
+
+    public function step5(Request $request)
+    {
+
+        // VALIDATION
+        $validator = Validator::make($request->all(), [
+            'mobile_number' => 'required|numeric',
+        ], [
+            'required' => trans('validation.required'),
+            'numeric' => trans('validation.numeric'),
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $mobile_number = $request -> input('mobile_number');
+        session(['mobile_number' => $mobile_number]);
+
+
+        // $phoneNumber = '+31683906728';
+
+        // SEND OTP VIA PLIVO
+        $otp = rand(100000, 999999);
+
+        $AUTH_ID = env('PLIVO_AUTH_ID');
+        $AUTH_TOKEN = env('PLIVO_AUTH_TOKEN');
+        $src = env('PLIVO_SENDER_ID');
+        $dst = $mobile_number;
+        $text = 'Your OTP is: ' . $otp;
+
+        $url = 'https://api.plivo.com/v1/Account/'.$AUTH_ID.'/Message/';
+        $data = array("src" => "$src", "dst" => "$dst", "text" => "$text");
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json'
+        ])
+        ->withBasicAuth($AUTH_ID, $AUTH_TOKEN)
+        ->post($url, $data);
+        if($response->status() == 400) {
+            $data = ['show_status' => 'This is invalid phone number'];
+            $show_status = 'This is invalid phone number';
+            session()->flash('show_status', $show_status);
+            return redirect()
+                ->route('step5')
+                ->withInput();
+        }
+        try {
+            $record = DB::table('phoneverifications')->where('phone_number', $mobile_number)->first();
+            if($record) {
+                DB::table('phoneverifications')->where('phone_number', $mobile_number)->delete();
+            }
+            $phone_number_verification = new Phoneverification();
+            $phone_number_verification->verify_code = $otp;
+            $phone_number_verification->phone_number = $mobile_number;
+            $phone_number_verification->status = false;
+            $phone_number_verification->save();
+        } catch(Exception $e) { };
+        
+        session(['signup_step' => 5]);
+
+        return redirect('/step6');
+       
+    }
+
+    public function step6(Request $request)
+    {
+        // GET VERIFY CODE FROM INPUT TAG
+        $verify_code = $request->input('verify_code');
+
+        $mobile_number = session('mobile_number');
+
+        // GET CURRENT DATE
+        $verify_email_otp_date = strtotime(date('Y-m-d H:i:s', strtotime('now')));
+
+        $record = DB::table('phoneverifications')->where('phone_number', $mobile_number)->first();
+        $created_at = strtotime($record->created_at);
+        $correct_phone_verify_code = $record->verify_code;
+
+        // CALCULATE TIME
+        $time = $verify_email_otp_date - $created_at;
+
+        
+        if($time >= 300) {
+            $random_str = Str::random(12);
+            DB::table('phoneverifications')
+                ->where('phone_number', $mobile_number)
+                ->update(['verify_code' => $random_str]);
+
+            $verify_code_error = "The code is invalid";
+            session()->flash('verify_code_error', $verify_code_error);
+            return redirect()
+                ->route('step6')
+                ->withInput();
+
+        } else if ($verify_code != $correct_phone_verify_code) {
+            $verify_code_error = "The code is invalid";
+            session()->flash('verify_code_error', $verify_code_error);
+            return redirect()
+                ->route('step6')
+                ->withInput();
+        } else {
+            DB::table('phoneverifications')
+                ->where('phone_number', $mobile_number)
+                ->update(['status' => true]);
+
+            session(['signup_step' => 6]);
+        
+            return redirect('/step7');
+        }
+    }
+
+    public function step7(Request $request)
+    {
+        Session::forget('mobile_number');
 
         // VALIDATION
         $validator = Validator::make($request->all(), [
@@ -215,47 +406,68 @@ class SignupController extends Controller
             ->withInput();
         }
 
+        $first_last_name = $request->input('first_last_name');
+        $business_phone = $request->input('business_phone');
+        $receive_message = $request->input('receive_message');
+        $business_name = $request->input('business_name');
+        $business_type = $request->input('business_type');
+        $street_address = $request->input('street_address');
+        $suite_unit_floor = $request->input('suite_unit_floor');
+        $zip_code = $request->input('zip_code');
+        $city = $request->input('city');
+        $state = $request->input('state');
 
-        // GET DATA FROM $request
-        // $first_last_name = $request->input('first_last_name');
-        // $business_phone = $request->input('business_phone');
-        // $receive_message = $request->input('receive_message');
-        // $business_name = $request->input('business_name');
-        // $business_type = $request->input('business_type');
-        // $street_address = $request->input('street_address');
-        // $suite_unit_floor = $request->input('suite_unit_floor');
-        // $zip_code = $request->input('zip_code');
-        // $city = $request->input('city');
-        // $state = $request->input('state');
+        $business_email = $request->input('business_email');
+        $role = $request->input('role');
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $mobile_number = $request->input('mobile_number');
+        try {
+            $user = new User();
+            $user->first_last_name = $first_last_name;
+            $user->business_phone = $business_phone;
+            $user->receive_message = $receive_message;
+            $user->business_name = $business_name;
+            $user->business_type = $business_type;
+            $user->street_address = $street_address;
+            $user->suite_unit_floor = $suite_unit_floor;
+            $user->zip_code = $zip_code;
+            $user->city = $city;
+            $user->state = $state;
+            $user->business_email = $business_email;
+            $user->role = $role;
+            $user->name = $name;
+            $user->email = $email;
+            $user->password = bcrypt($password);
+            $user->mobile_number = $mobile_number;
+            $user->save();
+        } catch(Exception $e) { };
+
+        session(['signup_step' => 7]);
 
 
-        // SAVE DATA IN SESSION (METHOD 1)
-        // session([
-        //     'first_last_name' => $first_last_name,
-        //     'business_phone' => $business_phone,
-        //     'receive_message' => $receive_message,
-        //     'business_name' => $business_name,
-        //     'business_type' => $business_type,
-        //     'street_address' => $street_address,
-        //     'suite_unit_floor' => $suite_unit_floor,
-        //     'zip_code' => $zip_code,
-        //     'city' => $city,
-        //     'state' => $state
-        // ]);
-
-        return redirect('/stepSeven');
-
+        if($role == "Buyer") {
+            return redirect('/step9');
+        } else {
+            return redirect('/step8');
+        }
     }
 
-    public function stepSeven (Request $request) {
-
+    public function step8 (Request $request) 
+    {
         // VALIDATION
         $validator = Validator::make($request->all(), [
             'tax_ein_ssn' => 'required',
             'invitation_code' => 'required',
             'business_url' => 'required',
+            'file1' => 'required|file|mimes:pdf,jpeg,jpg|max:10240',
+            'file2' => 'required|file|mimes:pdf,jpeg,jpg|max:10240',
         ], [
-            'required' => trans('validation.required'),
+            'required' => trans('validation.required_file'),
+            'file' => trans('validation.file'),
+            'mimes' => trans('validation.mimes'),
+            'max' => trans('validation.maxsize'),
         ]);
         
         if ($validator->fails()) {
@@ -265,27 +477,133 @@ class SignupController extends Controller
             ->withInput();
         }
 
+        $file1 = $request->file('file1');
+        $file2 = $request->file('file2');
 
-        // GET DATA FROM $request
-        // $tax_ein_ssn = $request->input('tax_ein_ssn');
-        // $invitation_code = $request->input('invitation_code');
-        // $business_url = $request->input('business_url');
+        // storage/app
+        $file1->store('public/uploads');
+        $file2->store('public/uploads');
 
-        // SAVE DATA IN SESSION (METHOD 1)
-        // session([
-        //     'tax_ein_ssn' => $tax_ein_ssn,
-        //     'invitation_code' => $invitation_code,
-        //     'business_url' => $business_url
-        // ]);
+
+        $tax_ein_ssn = $request->input('tax_ein_ssn');
+        $business_url = $request->input('business_url');
+        $invitation_code = $request->input('invitation_code');
+        $fileName1 = $request->file('file1')->hashName();
+        $fileName2 = $request->file('file2')->hashName();
+        $domain = request()->getHost();
+        $port = request()->getPort();
+        $url1 = $domain . ':' . $port . asset('storage/app/public/uploads/' . $fileName1);
+        $url2 = $domain . ':' . $port . asset('storage/app/public/uploads/' . $fileName2);
+        $email = session('email');
+
+        DB::table('users')
+            ->where('email', $email)
+            ->update([
+                'tax_ein_ssn' => $tax_ein_ssn,
+                'business_url' => $business_url,
+                'invitation_code' => $invitation_code,
+                'official_documents_1' => $url1,
+                'official_documents_2' => $url2,
+            ]);
+
+        Session::forget('email');
+
+        session(['signup_step' => 8]);
+
+        return redirect('/step9');
+    }
+
+    public function resendEmail (Request $request)
+    {
+        // DELETE EXISTING RECORD IN DATABASE
+        $email = session('email');
+        $record = DB::table('emailverifications')->where('email', $email)->first();
+        if($record) {
+            DB::table('emailverifications')->where('email', $email)->delete();
+        }
+
+        // RESEND OTP TO THE EMAIL ADDRESS
+        $otp = rand(100000, 999999);
+        // Mail::to($email)->send(new OtpMail($otp));
+
+        $email_data = array(
+            "sender"=>array("name"=>"brandedstocklots", "email"=>"sender@example.com"),
+            "to"=>array(array("email"=>$email)),
+            "subject"=>"Your OTP is $otp",
+            "htmlContent"=>"<p>Your OTP is $otp</p>"
+        );
+        $email_data = json_encode($email_data);
+        $headers = array(
+            "accept: application/json",
+            "content-type: application/json",
+            "api-key: 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"
+        );
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.sendinblue.com/v3/smtp/email",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $email_data,
+            CURLOPT_HTTPHEADER => $headers
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        // CREATE NEW RECORD
+        try {
+            $emial_verification = new Emailverification();
+            $emial_verification->verify_code = $otp;
+            $emial_verification->email = $email;
+            $emial_verification->status = false;
+            $emial_verification->save();
+        } catch(Exception $e) { };
+
         
 
-        // GET ALL SESSION DATA
-        // $value = $request->session()->all();
-        // $email = session('email');
-        // dd($value);
-
-        return redirect('/stepEight');
+        return redirect()->action([self::class, 'step4']);
     }
+    
+    public function resendPhone (Request $request)
+    {
+        // SEND OTP VIA PLIVO
+        $otp = rand(100000, 999999);
+        $mobile_number = session('mobile_number');
+
+        $AUTH_ID = env('PLIVO_AUTH_ID');
+        $AUTH_TOKEN = env('PLIVO_AUTH_TOKEN');
+        $src = env('PLIVO_SENDER_ID');
+        $dst = $mobile_number;
+        $text = 'Your OTP is: ' . $otp;
+
+        $url = 'https://api.plivo.com/v1/Account/'.$AUTH_ID.'/Message/';
+        $data = array("src" => "$src", "dst" => "$dst", "text" => "$text");
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json'
+        ])
+        ->withBasicAuth($AUTH_ID, $AUTH_TOKEN)
+        ->post($url, $data);
+
+        // CREATE NEW RECORD
+        try {
+            $phone_number_verification = new Phoneverification();
+            $phone_number_verification->verify_code = $otp;
+            $phone_number_verification->phone_number = $mobile_number;
+            $phone_number_verification->status = false;
+            $phone_number_verification->save();
+        } catch(Exception $e) { };
+
+        return redirect()->action([self::class, 'step6']);
+    }
+
+
+    
 
 
 
@@ -293,12 +611,12 @@ class SignupController extends Controller
     // Display a listing of the resource.
     public function index()
     {
-        return view('stepOne');
+        return view('step1');
     }
 
 
     // Show the form for creating a new resource.
-    public function create()
+    public function create(Request $request)
     {
         //
     }

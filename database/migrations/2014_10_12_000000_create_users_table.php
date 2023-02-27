@@ -17,23 +17,26 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role');
+            $table->string('mobile_number');
 
             $table->string('business_name');
             $table->string('business_email')->unique();
             $table->string('business_type');
             $table->string('business_phone');
-            $table->string('business_url');
+            $table->string('business_url')->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('first_last_name');
             $table->string('street_address');
-            $table->string('receive_message');
-            $table->string('suite_unit_floor');
+            $table->string('receive_message')->nullable();
+            $table->string('suite_unit_floor')->nullable();
             $table->string('zip_code');
             $table->string('city');
             $table->string('state');
-            $table->string('tax_ein_ssn');
-            $table->string('invitation_code');
+            $table->string('tax_ein_ssn')->nullable();
+            $table->string('invitation_code')->nullable();
+            $table->string('official_documents_1')->nullable();
+            $table->string('official_documents_2')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

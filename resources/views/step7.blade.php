@@ -54,7 +54,7 @@
                                         </span>
                                     </p>
                                     <hr class="bd-m">
-                                    <form action="{{ route('stepSix') }}" method="POST">
+                                    <form action="{{ route('step7') }}" method="POST">
                                         @csrf
                                         <p class="subtitle-3">{{ __('Contract Information')}}</p>
                                         <label class="label-1">{{ __('First and last name')}}</label>
@@ -208,6 +208,12 @@
                                         @error('state')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
+                                        <input type="hidden" name="business_email" id="business_email" value="">
+                                        <input type="hidden" name="role" id="role" value="">
+                                        <input type="hidden" name="name" id="name" value="">
+                                        <input type="hidden" name="email" id="email" value="">
+                                        <input type="hidden" name="password" id="password" value="">
+                                        <input type="hidden" name="mobile_number" id="mobile_number" value="">
                                         <hr class="bd-m">
                                         <button type="submit" class="b-btn mt-15 mb-15">{{ __('Create business account')}}</button>
                                     </form>
@@ -223,5 +229,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/stepSix.js') }}"></script>
+    <script src="{{ asset('/js/validation/step7.js') }}"></script>
 @endsection

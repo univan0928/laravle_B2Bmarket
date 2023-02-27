@@ -73,6 +73,12 @@
   border-color: #BCC0C3;
 }
 
+.file {
+  background-color: #E8EAEB;
+  color: #222d3a !important;
+  padding: 10px 10px;
+}
+
 .top-title {
   font-weight: 700;
   font-size: 24px !important;
@@ -426,7 +432,7 @@ input[type=radio] {
   text-align: left;
   font-size: 12px;
   line-height: 25px;
-  padding-left: 15px;
+  padding-top: 3px;
 }
 
 
@@ -434,7 +440,17 @@ input[type=radio] {
   display: flex;
   justify-content: space-around;
 }
-
+.skip {
+  font-size: 18px !important;
+  padding-top: 10px;
+  line-height: 1.5 !important;
+  color: #0060c0;
+}
+.skip:hover {
+  color: #ed1c24;
+  transition: none;
+  text-decoration: underline;
+}
 .link-normal {
   padding-top: 10px;
   font-size: 12px !important;
@@ -595,19 +611,22 @@ input[type=radio] {
 .mt-15 {
   margin-bottom: 15px;
 }
-
+#pass-notice {
+  display: flex;
+  align-items: center;
+}
 .a-icon-alert {
   height: 13px;
   width: 14px;
-  position: absolute;
+  /* position: absolute; */
   background-position: -166px -130px;
   background-image: url('../img/mPGmT0r6IeTyIee.png');
   background-size: 400px 750px;
   background-repeat: no-repeat;
   display: inline-block;
   vertical-align: top;
-  top: 355px;
-  left: 62px;
+  /* top: 355px; */
+  /* left: 62px; */
 }
 
 .sub-1 {
@@ -746,7 +765,10 @@ button.accordion.active i::before {
   transition: max-height 0.2s ease-out;
 }
 
-
+.m-err {
+  margin-left: 17px;
+  margin-bottom: 8px;
+}
 .mb-20 {
   margin-bottom: 5px;
 }

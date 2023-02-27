@@ -62,30 +62,6 @@
     
 
 @section('custom_js')
-    <script>
-        function onContinue(){
-            $.ajax({
-                url: '/stepThree',
-                type: 'post',
-                data: $('form').serialize(),
-                dataType: 'json',
-                success: function(response){
-                    var error = response.error;
-                    var success = response.success;
-                    if(error != "") {
-                        $('#alert_message').html(error);
-                    }
-                    else {
-                        location.href="/stepFour";
-                    }
-                },
-                error: function(jqXhr, json, errorThrown){
-                    var error = jqXhr.responseText;
-                    $('#alert_message').html(error);
-                }
-            });
-        }
-    </script>
-
+    <script src="{{ asset('/js/validation/step3.js') }}"></script>
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
 @endsection

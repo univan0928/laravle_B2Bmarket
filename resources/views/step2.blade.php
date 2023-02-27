@@ -45,7 +45,7 @@
                         <div class="col-md-12">
                             <div class="pr-45 pl-45 pt-30 pb-30 bg-white">
                                 <p class="title mb-15">{{ __('Enter your full name and choose your business passwords')}}</p>
-                                <form action="{{ route('stepTwo') }}" method="POST">
+                                <form action="{{ route('step2') }}" method="POST">
                                     @csrf
                                     <label class="label-2">{{ __('Your name')}}</label>
                                     <input type="text" value="{{ old('name') }}" placeholder="First and last name" name="name" class="custom-form-control" />
@@ -61,7 +61,10 @@
                                     @enderror
                                     <label class="label-2">{{ __('Password')}}</label>
                                     <input type="password" value="{{ old('password') }}" name="password" placeholder="At least 6 characters" class="custom-form-control" />
-                                    <span>{{ __('Passwords must be at least 6 characters.')}}<i class="a-icon a-icon-alert"></i></span>
+                                    <div id="pass-notice">
+                                        <i class="a-icon a-icon-alert"></i>
+                                        <span>{{ __('Passwords must be at least 6 characters.')}}</span>
+                                    </div>
                                     <div class="text-danger none" id="password_error_required">The email field is required</div>
                                     <div class="text-danger none" id="password_error_match">Password confirmation does not match</div>
                                     <div class="text-danger none" id="password_error_rule">Password must have at least 1 uppercase letter and 1 number</div>
@@ -88,5 +91,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/stepTwo.js') }}"></script>
+    <script src="{{ asset('/js/validation/step2.js') }}"></script>
 @endsection
