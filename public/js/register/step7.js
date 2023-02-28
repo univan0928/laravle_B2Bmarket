@@ -82,12 +82,8 @@ $('form').submit(function(e) {
     if (zip_code == "") {
         $("#zip_code_error_required").removeClass('none');
         e.preventDefault();
-    } else if(isNaN(zip_code)) {
-        $("#zip_code_error_required").addClass('none');
-        $("#zip_code_error_number").removeClass('none');
-        e.preventDefault();
     } else {
-        $("#zip_code_error_number").addClass('none');
+        $("#zip_code_error_required").addClass('none');
         localStorage.setItem('zip_code', zip_code);
     }
 

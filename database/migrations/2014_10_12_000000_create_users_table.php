@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('business_email')->unique();
             $table->string('business_type');
             $table->string('business_phone');
-            $table->string('business_url')->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('first_last_name');

@@ -18,12 +18,4 @@ $('form').submit(function(e) {
         $("#invitation_code_error").addClass('none');
         localStorage.setItem('invitation_code', invitation_code);
     }
-
-    if (business_url == "") {
-        $("#business_url_error").removeClass('none');
-        e.preventDefault();
-    } else {
-        $("#business_url_error").addClass('none');
-        localStorage.setItem('business_url', business_url);
-    }
 });

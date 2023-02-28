@@ -84,21 +84,6 @@
                                             </div>
                                         </div>
                                         <div class="card mt-15">
-                                            <button type="button" class="accordion">{{ __('Business website URL')}}
-                                                <i class="icon-chevron-down"></i>
-                                            </button>
-                                            <div class="panel">
-                                                <p class="subtitle-2 pt-10">{{ __('Enter the URL for your organization’s website to
-                                                    get verified faster.')}}</p>
-                                                <label class="subtitle-2 pt-10">{{ __('Business website URL')}}</label>
-                                                <input type="text" name="business_url" value="{{ old('business_url') }}" class="custom-form-control mb-20" />
-                                                <div class="text-danger none" id="business_url_error">The business url field is required</div>
-                                                @error('business_url')
-                                                    <div class="text-danger mt-err">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="card mt-15">
                                             <button type="button" class="accordion">{{ __('Official documents')}}
                                                 <i class="icon-chevron-down"></i>
                                             </button>
@@ -123,7 +108,9 @@
                                         </div>
                                         <button type="submit" class="b-btn mt-15 mb-15">{{ __('Submit')}}</button>
                                     </form>
-
+                                    <div class="link-tag">
+                                        <a href="{{ route('auth.register.step9') }}" class="link-normal">Skip this step</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

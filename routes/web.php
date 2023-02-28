@@ -48,10 +48,11 @@ Route::prefix('/auth/register')->middleware('check.progress')->group(function() 
     Route::get('/step8', function() {
         return view('/auth/register/step8');
     });
-    Route::get('/step9', function() {
-        return view('/auth/register/step9');
-    });
 });
+
+Route::get('/auth/register/step9', function() {
+    return view('/auth/register/step9');
+})->name('auth.register.step9');
 
 Route::prefix('/auth/register')->group(function() {
     Route::post('/step1', [RegisterController::class, 'step1'])->name('auth.register.step1');

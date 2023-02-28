@@ -50,15 +50,15 @@
                                             <div class="col-4">
                                                 <select class="browser-default custom-select" id="state_select">
                                                     <option hidden="" value="">NL +31</option>
-                                                    <option value="1">US +1</option>
-                                                    <option value="44">GB +44</option>
-                                                    <option value="31">NL +31</option>
-                                                    <option value="61">AU +61</option>
+                                                    <option value="+1">US +1</option>
+                                                    <option value="+44">GB +44</option>
+                                                    <option value="+31">NL +31</option>
+                                                    <option value="+61">AU +61</option>
                                                 </select>
                                             </div>
                                             <div class="col-8">
                                                 <!-- value="{{ old('mobile_number') }}" -->
-                                                <input type="text" name="mobile_number" value="31" class="custom-form-control" />
+                                                <input type="text" name="mobile_number" value="+31" class="custom-form-control" />
                                             </div>
                                             <div class="text-danger none m-err" id="mobile_number_error_required">The mobile number field is required</div>
                                             <div class="text-danger none m-err" id="mobile_number_error_number">The mobile number must be number</div>

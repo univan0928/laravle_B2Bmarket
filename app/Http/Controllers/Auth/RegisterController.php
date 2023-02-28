@@ -147,7 +147,7 @@ class RegisterController extends Controller
         $headers = array(
             "accept: application/json",
             "content-type: application/json",
-            "api-key: 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"
+            "api-key: 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"
         );
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -221,7 +221,7 @@ class RegisterController extends Controller
 
         // CALCULATE TIME
         $time = $verify_email_otp_date - $created_at;
-        if($time >= 20) {
+        if($time >= 300) {
             $random_str = Str::random(12);
             DB::table('email_verifications')
                 ->where('email',$email)
@@ -265,6 +265,7 @@ class RegisterController extends Controller
         }
 
         $mobile_number = $request -> input('mobile_number');
+
         session(['mobile_number' => $mobile_number]);
         session(['signup_step' => 5]);
 
@@ -282,7 +283,9 @@ class RegisterController extends Controller
         $verify_code = $request->input('verify_code');
 
         $mobile_number = session('mobile_number');
-
+        if(substr($mobile_number, 0, 1) == "+") {
+            $mobile_number = substr($mobile_number, 1);
+        }
         // GET CURRENT DATE
         $verify_email_otp_date = strtotime(date('Y-m-d H:i:s', strtotime('now')));
 
@@ -294,7 +297,7 @@ class RegisterController extends Controller
         $time = $verify_email_otp_date - $created_at;
 
         
-        if($time >= 20) {
+        if($time >= 300) {
             $random_str = Str::random(12);
             DB::table('phone_verifications')
                 ->where('phone_number', $mobile_number)
@@ -334,7 +337,7 @@ class RegisterController extends Controller
             'business_type' => 'required',
             'street_address' => 'required',
             // 'suite_unit_floor' =>
-            'zip_code' => 'required|numeric|min:5',
+            'zip_code' => 'required',
             'city' => 'required|string|max:255',
             'state' => 'required',
         ], [
@@ -476,7 +479,7 @@ class RegisterController extends Controller
         $headers = array(
             "accept: application/json",
             "content-type: application/json",
-            "api-key: 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"
+            "api-key: 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"
         );
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -523,7 +526,9 @@ class RegisterController extends Controller
         // SEND OTP VIA PLIVO
         $otp = rand(100000, 999999);
         $mobile_number = session('mobile_number');
-
+        if(substr($mobile_number, 0, 1) == "+") {
+            $mobile_number = substr($mobile_number, 1);
+        }
         $records = DB::table('phone_verifications')
             ->where('phone_number' , $mobile_number)
             ->delete();
@@ -550,7 +555,6 @@ class RegisterController extends Controller
             $phone_number_verification->status = false;
             $phone_number_verification->save();
         } catch(Exception $e) { };
-
         return redirect()->action([self::class, 'step6']);
     }
 
