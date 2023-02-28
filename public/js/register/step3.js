@@ -1,6 +1,6 @@
 function onContinue() {
     $.ajax({
-        url: '/step3',
+        url: 'step3',
         type: 'post',
         data: $('form').serialize(),
         dataType: 'json',
@@ -11,7 +11,7 @@ function onContinue() {
                 $('#alert_message').html(error);
             }
             else {
-                location.href="step4";
+                location.href="/auth/register/step4";
             }
         },
         error: function(jqXhr, json, errorThrown){

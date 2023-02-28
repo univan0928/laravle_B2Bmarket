@@ -62,6 +62,6 @@
     
 
 @section('custom_js')
-    <script src="{{ asset('/js/validation/step3.js') }}"></script>
+    <script src="{{ asset('/js/register/step3.js') }}"></script>
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
 @endsection

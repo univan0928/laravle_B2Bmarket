@@ -54,7 +54,7 @@
                                         </span>
                                     </p>
                                     <hr class="bd-m">
-                                    <form action="{{ route('step7') }}" method="POST">
+                                    <form action="{{ route('auth.register.step7') }}" method="POST">
                                         @csrf
                                         <p class="subtitle-3">{{ __('Contract Information')}}</p>
                                         <label class="label-1">{{ __('First and last name')}}</label>
@@ -229,5 +229,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/step7.js') }}"></script>
+    <script src="{{ asset('/js/register/step7.js') }}"></script>
 @endsection

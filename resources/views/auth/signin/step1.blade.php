@@ -10,33 +10,6 @@
 @section('content')
 
 
-    <!-- STATUS BAR -->
-    <div class="process-bar">
-        <div class="container">
-            <div class="text-right">
-                <ul class="d-inline">
-                    <li class="d-inline mr-20">
-                        <span
-                            class="b-badge b-mr-mini b-border b-thick b-border-cloud b-circle b-bg-cloud b-text-abyss b-default">1</span>
-                        <span class="text-white text-uppercase">{{ __('Account creation')}}</span>
-                    </li>
-                    <li class="d-inline mr-20">
-                        <span
-                            class="b-badge b-mr-mini b-border b-thick b-border-cloud b-circle b-bg-abyss b-text-cloud b-default"
-                            role="alert">2</span>
-                        <span class="text-white text-uppercase">{{ __('Business details')}}</span>
-                    </li>
-                    <li class="d-inline mr-20">
-                        <span
-                            class="b-badge b-mr-mini b-border b-thick b-border-cloud b-circle b-bg-abyss b-text-cloud b-default"
-                            role="alert">3</span>
-                        <span class="text-white text-uppercase">{{ __('Finish')}}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <!-- CONTENT -->
     <div class="ps-page--single" id="about-us">
         <div class="ps-about-intro">
@@ -46,11 +19,11 @@
                         <div class="col-md-12">
                             <div class="bg-white pd-30-27">
                                 <p class="title mb-15">{{ __('Sign in')}}</p>
-                                <form action="{{ route('step2') }}" method="POST">
+                                <form action="{{ route('signin.step1') }}" method="POST">
                                     @csrf
                                     <label class="label-2">{{ __('Email or mobile phone number')}}</label>
                                     <input type="email" value="{{ old('email') }}"  name="email" class="custom-form-control" />
-                                    <div class="text-danger none" id="email_error">The name field is required</div>
+                                    <div class="text-danger none" id="email_error">This field is required</div>
                                     @error('email')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -60,18 +33,25 @@
                                 <p class="para-normal">By continuing, you agree to BrandedStocklots's <a href="#">{{ __('Conditions of Use')}}</a> and <a href="#">Privacy Notice</a>.</p>
                             </div>
                             <div class="a-divider a-divider-break"><h5 aria-level="5">New to Amazon?</h5></div>
-                            <button type="submit" class="b-btn b-btn-add">{{ __('Create your account')}}</button>
-                            <div class="button-wrapper" data-tippy-content="Click to copy button 30">
-                                <button class="button-30" role="button">Button 30</button>
-                            </div>
+                            
                             <div class="button-wrapper" data-tippy-content="Click to copy button 4">
-                               <button class="button-4" role="button">Button 4</button>
+                               <button class="button-4" role="button">Create your account</button>
                             </div>
-
-
-
-
                         </div>
+                    </div>
+                    <div class="a-divider a-divider-section">
+                        <div class="a-divider-inner">
+                        </div>
+                    </div>
+                    <div>
+                        <p class="para-normal">
+                            <a href="#" class="pr-30">{{ __('Conditions of Use')}}</a>
+                            <a href="#" class="pr-30">{{ __('Privacy Notice')}}</a>
+                            <a href="#">{{ __('Help')}}</a>
+                        </p>
+                    </div>
+                    <div class="signin-footer">
+                        <span class="signin-footer-content">© 1996-2023, Amazon.com, Inc. or its affiliates</span>
                     </div>
                 </div>
             </div>
@@ -81,5 +61,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/step2.js') }}"></script>
+    <script src="{{ asset('/js/signin/step1.js') }}"></script>
 @endsection

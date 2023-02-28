@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 use App\Mail\OtpMail;
-use App\Models\Emailverification;
-use App\Models\Phoneverification;
+use App\Models\EmailVerification;
+use App\Models\PhoneVerification;
 use App\Models\User;
+use App\Http\Controllers\Controller;
 
 
 
@@ -26,10 +27,15 @@ use GuzzleHttp\Client;
 
 require_once app_path().'/Constant/constants.php';
 
-class SignupController extends Controller
+class RegisterController extends Controller
 {
     public function step1(Request $request)
     {
+        // $verify_code = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+        // $record = DB::table('test')->first()->content;
+        // $record = str_replace('%verify_code%', $verify_code, $record);
+        // echo $record;
+        // exit;
 
         // SERVER-SIDE VALIDATION
         // resources/lang/en/validation.php
@@ -52,7 +58,7 @@ class SignupController extends Controller
         // SET SIGNUP STEP
         session(['signup_step' => 1]);
 
-        return redirect('/step2');
+        return redirect('/auth/register/step2');
     }
 
     public function step2(Request $request)
@@ -91,7 +97,7 @@ class SignupController extends Controller
             'signup_step' => 2
         ]);
 
-        return redirect('/step3');
+        return redirect('/auth/register/step3');
     }
 
     public function step3(Request $request)
@@ -124,6 +130,62 @@ class SignupController extends Controller
             'error'     =>  $err_msg ?? "",
             'success'   =>  $success_msg ?? ""
         );
+
+        // SEND OTP TO THE EMAIL ADDRESS
+        // GET EMAIL FROM SESSION
+        $email = session('email');
+        $otp = rand(100000, 999999);
+        // Mail::to($email)->send(new OtpMail($otp));
+
+        $email_data = array(
+            "sender"=>array("name"=>"BrandedStocklots", "email"=>"Admin@brandedstocklots.com"),
+            "to"=>array(array("email"=>$email)),
+            "subject"=>"Your OTP is $otp",
+            "htmlContent"=>"<p>Your OTP is $otp</p>"
+        );
+        $email_data = json_encode($email_data);
+        $headers = array(
+            "accept: application/json",
+            "content-type: application/json",
+            "api-key: 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"
+        );
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.sendinblue.com/v3/smtp/email",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $email_data,
+            CURLOPT_HTTPHEADER => $headers
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        // if ($err) {
+        //     echo "cURL Error #:" . $err;
+        // } else {
+        //     echo "Email sent successfully.";
+        // }
+
+        // SAVE DATA
+        try {
+            $record = DB::table('email_verifications')->where('email', $email)->first();
+            if($record) {
+                DB::table('email_verifications')->where('email', $email)->delete();
+            }
+            $emial_verification = new EmailVerification();
+            $emial_verification->verify_code = $otp;
+            $emial_verification->email = $email;
+            $emial_verification->status = false;
+            $emial_verification->save();
+        } catch(Exception $e) { };
+
         return json_encode($return_msg);
     }
 
@@ -153,34 +215,34 @@ class SignupController extends Controller
         // GET CURRENT DATE
         $verify_email_otp_date = strtotime(date('Y-m-d H:i:s', strtotime('now')));
 
-        $record = DB::table('emailverifications')->where('email', $email)->first();
+        $record = DB::table('email_verifications')->where('email', $email)->first();
         $created_at = strtotime($record->created_at);
         $correct_email_verify_code = $record->verify_code;
 
         // CALCULATE TIME
         $time = $verify_email_otp_date - $created_at;
-        if($time >= 300) {
+        if($time >= 20) {
             $random_str = Str::random(12);
-            DB::table('emailverifications')
+            DB::table('email_verifications')
                 ->where('email',$email)
                 ->update(['verify_code' => $random_str]);
 
             $verify_code_error = "The code is invalid";
             session()->flash('verify_code_error', $verify_code_error);
-            return view('/step4');
+            return view('/auth/register/step4');
 
         } else if ($verify_code != $correct_email_verify_code) {
             $verify_code_error = "The code is invalid";
             session()->flash('verify_code_error', $verify_code_error);
-            return view('/step4');
+            return view('/auth/register/step4');
         } else {
-            DB::table('emailverifications')
+            DB::table('email_verifications')
                 ->where('email', $email)
                 ->update(['status' => true]);
             
             session(['signup_step' => 4]);
 
-            return redirect('/step5');
+            return redirect('/auth/register/step5');
         }
     }
 
@@ -204,49 +266,13 @@ class SignupController extends Controller
 
         $mobile_number = $request -> input('mobile_number');
         session(['mobile_number' => $mobile_number]);
-
+        session(['signup_step' => 5]);
 
         // $phoneNumber = '+31683906728';
 
-        // SEND OTP VIA PLIVO
-        $otp = rand(100000, 999999);
+        // return redirect('/auth/register/step6');
+        return redirect()->action([self::class, 'sendPhone']);
 
-        $AUTH_ID = env('PLIVO_AUTH_ID');
-        $AUTH_TOKEN = env('PLIVO_AUTH_TOKEN');
-        $src = env('PLIVO_SENDER_ID');
-        $dst = $mobile_number;
-        $text = 'Your OTP is: ' . $otp;
-
-        $url = 'https://api.plivo.com/v1/Account/'.$AUTH_ID.'/Message/';
-        $data = array("src" => "$src", "dst" => "$dst", "text" => "$text");
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])
-        ->withBasicAuth($AUTH_ID, $AUTH_TOKEN)
-        ->post($url, $data);
-        if($response->status() == 400) {
-            $data = ['show_status' => 'This is invalid phone number'];
-            $show_status = 'This is invalid phone number';
-            session()->flash('show_status', $show_status);
-            return redirect()
-                ->route('step5')
-                ->withInput();
-        }
-        try {
-            $record = DB::table('phoneverifications')->where('phone_number', $mobile_number)->first();
-            if($record) {
-                DB::table('phoneverifications')->where('phone_number', $mobile_number)->delete();
-            }
-            $phone_number_verification = new Phoneverification();
-            $phone_number_verification->verify_code = $otp;
-            $phone_number_verification->phone_number = $mobile_number;
-            $phone_number_verification->status = false;
-            $phone_number_verification->save();
-        } catch(Exception $e) { };
-        
-        session(['signup_step' => 5]);
-
-        return redirect('/step6');
        
     }
 
@@ -260,7 +286,7 @@ class SignupController extends Controller
         // GET CURRENT DATE
         $verify_email_otp_date = strtotime(date('Y-m-d H:i:s', strtotime('now')));
 
-        $record = DB::table('phoneverifications')->where('phone_number', $mobile_number)->first();
+        $record = DB::table('phone_verifications')->where('phone_number', $mobile_number)->first();
         $created_at = strtotime($record->created_at);
         $correct_phone_verify_code = $record->verify_code;
 
@@ -268,32 +294,30 @@ class SignupController extends Controller
         $time = $verify_email_otp_date - $created_at;
 
         
-        if($time >= 300) {
+        if($time >= 20) {
             $random_str = Str::random(12);
-            DB::table('phoneverifications')
+            DB::table('phone_verifications')
                 ->where('phone_number', $mobile_number)
                 ->update(['verify_code' => $random_str]);
 
             $verify_code_error = "The code is invalid";
             session()->flash('verify_code_error', $verify_code_error);
-            return redirect()
-                ->route('step6')
+            return redirect('/auth/register/step6')
                 ->withInput();
 
         } else if ($verify_code != $correct_phone_verify_code) {
             $verify_code_error = "The code is invalid";
             session()->flash('verify_code_error', $verify_code_error);
-            return redirect()
-                ->route('step6')
+            return redirect('/auth/register/step6')
                 ->withInput();
         } else {
-            DB::table('phoneverifications')
+            DB::table('phone_verifications')
                 ->where('phone_number', $mobile_number)
                 ->update(['status' => true]);
 
             session(['signup_step' => 6]);
         
-            return redirect('/step7');
+            return redirect('/auth/register/step7');
         }
     }
 
@@ -369,9 +393,9 @@ class SignupController extends Controller
 
 
         if($role == "Buyer") {
-            return redirect('/step9');
+            return redirect('/auth/register/step9');
         } else {
-            return redirect('/step8');
+            return redirect('/auth/register/step8');
         }
     }
 
@@ -431,7 +455,7 @@ class SignupController extends Controller
 
         session(['signup_step' => 8]);
 
-        return redirect('/step9');
+        return redirect('/auth/register/step9');
     }
 
     public function sendEmail (Request $request)
@@ -452,7 +476,7 @@ class SignupController extends Controller
         $headers = array(
             "accept: application/json",
             "content-type: application/json",
-            "api-key: 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"
+            "api-key: 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"
         );
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -480,25 +504,29 @@ class SignupController extends Controller
 
         // SAVE DATA
         try {
-            $record = DB::table('emailverifications')->where('email', $email)->first();
+            $record = DB::table('email_verifications')->where('email', $email)->first();
             if($record) {
-                DB::table('emailverifications')->where('email', $email)->delete();
+                DB::table('email_verifications')->where('email', $email)->delete();
             }
-            $emial_verification = new Emailverification();
+            $emial_verification = new EmailVerification();
             $emial_verification->verify_code = $otp;
             $emial_verification->email = $email;
             $emial_verification->status = false;
             $emial_verification->save();
         } catch(Exception $e) { };
 
-        return view('/step4');
+        return redirect('/auth/register/step4');
     }
     
-    public function resendPhone (Request $request)
+    public function sendPhone (Request $request)
     {
         // SEND OTP VIA PLIVO
         $otp = rand(100000, 999999);
         $mobile_number = session('mobile_number');
+
+        $records = DB::table('phone_verifications')
+            ->where('phone_number' , $mobile_number)
+            ->delete();
 
         $AUTH_ID = env('PLIVO_AUTH_ID');
         $AUTH_TOKEN = env('PLIVO_AUTH_TOKEN');
@@ -516,7 +544,7 @@ class SignupController extends Controller
 
         // CREATE NEW RECORD
         try {
-            $phone_number_verification = new Phoneverification();
+            $phone_number_verification = new PhoneVerification();
             $phone_number_verification->verify_code = $otp;
             $phone_number_verification->phone_number = $mobile_number;
             $phone_number_verification->status = false;
@@ -527,15 +555,11 @@ class SignupController extends Controller
     }
 
 
-    
-
-
-
 
     // Display a listing of the resource.
     public function index()
     {
-        return view('step1');
+        return view('/auth/register/step1');
     }
 
 

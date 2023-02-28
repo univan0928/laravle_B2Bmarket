@@ -44,7 +44,7 @@
                                     <p class="title mb-15">Add mobile number</p>
                                     <p class="subtitle-2">To enhance your account security, add and verify your mobile number.</p>
                                     <p class="label-2">New mobile number</p>
-                                    <form action="{{ route('step5') }}" method="POST">
+                                    <form action="{{ route('auth.register.step5') }}" method="POST">
                                         @csrf
                                         <div class="row">
                                             <div class="col-4">
@@ -86,5 +86,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/step5.js') }}"></script>
+    <script src="{{ asset('/js/register/step5.js') }}"></script>
 @endsection

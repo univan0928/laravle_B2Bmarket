@@ -45,7 +45,7 @@
                                 <div class="pr-45 pl-45 pt-30 pb-30 bg-white">
                                     <p class="top-title mb-15">Let's create your Branded Stocklots account</p>
                                     <p class="label-1">Enter the email you'd like to use for your business account</p>
-                                    <form action="{{ route('step1') }}" method="POST" id="myForm">
+                                    <form action="{{ route('auth.register.step1') }}" method="POST" id="myForm">
                                         @csrf
                                         <input type="email" id="business_email" name="business_email" value="{{ old('business_email') }}" placeholder="Enter email" class="custom-form-control" />
                                         <div class="text-danger none" id="business_email_error">The business_email field is required</div>
@@ -123,5 +123,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/step1.js') }}"></script>
+    <script src="{{ asset('/js/register/step1.js') }}"></script>
 @endsection

@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\SignupController;
-use App\Http\Controllers\SMSController;
+
+
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,72 +17,77 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('step1');
-})->middleware('initial');
 
-Route::get('/step1', function () {
-    return view('step1');
-})->middleware('initial');
+// ------Register Route------
+Route::get('/', function() {
+    return redirect('/auth/register/step1');
+});
 
-Route::get('/step2', function () {
-    return view('step2');
-})->middleware('check.progress');
+Route::prefix('/auth/register')->middleware('check.progress')->group(function() {
+    Route::get('/step1', function() {
+        return view('/auth/register/step1');
+    });
+    Route::get('/step2', function() {
+        return view('/auth/register/step2');
+    });
+    Route::get('/step3', function() {
+        return view('/auth/register/step3');
+    });
+    Route::get('/step4', function() {
+        return view('/auth/register/step4');
+    });
+    Route::get('/step5', function() {
+        return view('/auth/register/step5');
+    });
+    Route::get('/step6', function() {
+        return view('/auth/register/step6');
+    });
+    Route::get('/step7', function() {
+        return view('/auth/register/step7');
+    });
+    Route::get('/step8', function() {
+        return view('/auth/register/step8');
+    });
+    Route::get('/step9', function() {
+        return view('/auth/register/step9');
+    });
+});
 
-Route::get('/step3', function () {
-    return view('step3');
-})->middleware('check.progress');
+Route::prefix('/auth/register')->group(function() {
+    Route::post('/step1', [RegisterController::class, 'step1'])->name('auth.register.step1');
+    Route::post('/step2', [RegisterController::class, 'step2'])->name('auth.register.step2');
+    Route::post('/step3', [RegisterController::class, 'step3'])->name('auth.register.step3');
+    Route::post('/step4', [RegisterController::class, 'step4'])->name('auth.register.step4');
+    Route::post('/step5', [RegisterController::class, 'step5'])->name('auth.register.step5');
+    Route::post('/step6', [RegisterController::class, 'step6'])->name('auth.register.step6');
+    Route::post('/step7', [RegisterController::class, 'step7'])->name('auth.register.step7');
+    Route::post('/step8', [RegisterController::class, 'step8'])->name('auth.register.step8');
+});
 
-// Route::get('/step4', function () {
-//     return view('/step4');
-// })->middleware('check.progress');
-
-
-
-Route::get('/step5', function () {
-    return view('/step5');
-})->middleware('check.progress');
-
-Route::get('/step6', function () {
-    return view('/step6');
-})->middleware('check.progress');
-
-Route::get('/step7', function () {
-    return view('/step7');
-})->middleware('check.progress');
-
-Route::get('/step8', function () {
-    return view('/step8');
-})->middleware('check.progress');
-
-Route::get('/step9', function () {
-    return view('/step9');
-})->middleware('check.progress');
-
-Route::get('/step9', function () {
-    return view('step9');
-})->name('step9')->middleware('check.progress');
-
-Route::post('otp', function () {
-    return view('/otp');
+Route::get('/sendPhone', [RegisterController::class, 'sendPhone'])->name('sendPhone');
+Route::get('/sendEmail', [RegisterController::class, 'sendEmail'])->name('sendEmail');
+Route::post('/auth/register/otp', function () {
+    return view('/auth/register/otp');
 });
 
 
 
-Route::post('/step1', [SignupController::class, 'step1'])->name('step1');
-Route::post('/step2', [SignupController::class, 'step2'])->name('step2');
-Route::post('/step3', [SignupController::class, 'step3'])->name('step3');
-Route::post('/step4', [SignupController::class, 'step4'])->name('step4');
-Route::post('/step5', [SignupController::class, 'step5'])->name('step5');
-Route::post('/step6', [SignupController::class, 'step6'])->name('step6');
-Route::post('/step7', [SignupController::class, 'step7'])->name('step7');
-Route::post('/step8', [SignupController::class, 'step8'])->name('step8');
-Route::get('/resendPhone', [SignupController::class, 'resendPhone'])->name('resendPhone');
-Route::get('/upload', [SignupController::class, 'upload'])->name('upload');
-Route::get('/step4', [SignupController::class, 'sendEmail'])->name('sendEmail');
-
+// ------Login Route------
 
 
 Route::get('/signin/step1', function () {
-    return view('signin.step1');
+    return view('/signin/step1');
 });
+Route::get('/signin/step2', function () {
+    return view('/signin/step2');
+});
+Route::get('/signin/step3', function () {
+    return view('signin.step3');
+});
+
+Route::get('/user-dashboard', function () {
+    return view('/user-dashboard');
+});
+
+Route::post('/signin/step1', [LoginController::class, 'step1'])->name('signin.step1');
+Route::post('/signin/step2', [LoginController::class, 'step2'])->name('signin.step2');

@@ -49,7 +49,7 @@
                                     <p class="subtitle-2">{{ __('Choose any one of the following options to help speed up the')}}
                                         <a href="#" class="link-big extra link-title-2">{{ __('verification process')}}</a></p>
 
-                                    <form action="{{ route('step8') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('auth.register.step8') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="card mt-15">
                                             <button type="button" class="accordion">{{ __('Tax ID, EIN, or SSN')}}
@@ -138,5 +138,5 @@
 @section('custom_js')
     <script src="{{ asset('/js/custom.js') }}"></script>
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/step8.js') }}"></script>
+    <script src="{{ asset('/js/register/step8.js') }}"></script>
 @endsection

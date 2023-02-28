@@ -45,7 +45,7 @@
                         <div class="col-md-12">
                             <div class="pr-45 pl-45 pt-30 pb-30 bg-white">
                                 <p class="title mb-15">{{ __('Enter your full name and choose your business passwords')}}</p>
-                                <form action="{{ route('step2') }}" method="POST">
+                                <form action="{{ route('auth.register.step2') }}" method="POST">
                                     @csrf
                                     <label class="label-2">{{ __('Your name')}}</label>
                                     <input type="text" value="{{ old('name') }}" placeholder="First and last name" name="name" class="custom-form-control" />
@@ -91,5 +91,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/step2.js') }}"></script>
+    <script src="{{ asset('/js/register/step2.js') }}"></script>
 @endsection

@@ -15,11 +15,14 @@ class CheckSignupProgress
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $current_url = $request->segment(1);
-        $previousStep = session('signup_step');
+        $current_url = $request->segment(3);
         $currentStep = intval(str_replace("step", "", $current_url));
+        if($currentStep == 1) {
+            session(['signup_step' => 0]);
+        }
+        $previousStep = session('signup_step');
         if ($currentStep > $previousStep + 1) {
-            $redirect_url = "/step" . $previousStep + 1;
+            $redirect_url = "/auth/register/step" . $previousStep + 1;
             return redirect($redirect_url);
         }
         // return redirect('/dashboard');
