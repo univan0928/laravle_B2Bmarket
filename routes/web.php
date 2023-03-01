@@ -20,9 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 // ------Register Route------
 Route::get('/', function() {
-    return redirect('/auth/register/step1');
+    return redirect('/user-dashboard');
 });
-
 Route::prefix('/auth/register')->middleware('check.progress')->group(function() {
     Route::get('/step1', function() {
         return view('/auth/register/step1');
@@ -49,11 +48,9 @@ Route::prefix('/auth/register')->middleware('check.progress')->group(function() 
         return view('/auth/register/step8');
     });
 });
-
 Route::get('/auth/register/step9', function() {
     return view('/auth/register/step9');
 })->name('auth.register.step9');
-
 Route::prefix('/auth/register')->group(function() {
     Route::post('/step1', [RegisterController::class, 'step1'])->name('auth.register.step1');
     Route::post('/step2', [RegisterController::class, 'step2'])->name('auth.register.step2');
@@ -64,7 +61,6 @@ Route::prefix('/auth/register')->group(function() {
     Route::post('/step7', [RegisterController::class, 'step7'])->name('auth.register.step7');
     Route::post('/step8', [RegisterController::class, 'step8'])->name('auth.register.step8');
 });
-
 Route::get('/sendPhone', [RegisterController::class, 'sendPhone'])->name('sendPhone');
 Route::get('/sendEmail', [RegisterController::class, 'sendEmail'])->name('sendEmail');
 Route::post('/auth/register/otp', function () {
@@ -75,20 +71,23 @@ Route::post('/auth/register/otp', function () {
 
 // ------Login Route------
 
+Route::prefix('/auth/login')->group(function() {
+    Route::get('/index', function() {
+        return view('/auth/login/index');
+    });
+    Route::get('/forget-password', function() {
+        return view('/auth/login/forget-password');
+    })->name('forget_password');
+    Route::get('/verification', function() {
+        return view('/auth/login/verification');
+    });
+    Route::post('/index', [LoginController::class, 'login'])->name('login');
+    Route::post('/verification', [LoginController::class, 'verification'])->name('verification');
+    // Route::get('/forget-password', [LoginController::class, 'login'])->name('forget_password');
+});
 
-Route::get('/signin/step1', function () {
-    return view('/signin/step1');
-});
-Route::get('/signin/step2', function () {
-    return view('/signin/step2');
-});
-Route::get('/signin/step3', function () {
-    return view('signin.step3');
-});
 
-Route::get('/user-dashboard', function () {
+
+Route::get('/user-dashboard', function() {
     return view('/user-dashboard');
 });
-
-Route::post('/signin/step1', [LoginController::class, 'step1'])->name('signin.step1');
-Route::post('/signin/step2', [LoginController::class, 'step2'])->name('signin.step2');

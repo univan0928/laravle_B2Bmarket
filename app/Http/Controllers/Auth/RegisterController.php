@@ -147,7 +147,7 @@ class RegisterController extends Controller
         $headers = array(
             "accept: application/json",
             "content-type: application/json",
-            "api-key: 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"
+            "api-key: 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"
         );
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -479,7 +479,7 @@ class RegisterController extends Controller
         $headers = array(
             "accept: application/json",
             "content-type: application/json",
-            "api-key: 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"
+            "api-key: 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"
         );
         $curl = curl_init();
         curl_setopt_array($curl, array(

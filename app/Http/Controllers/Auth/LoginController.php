@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use App\Http\Controllers\Controller;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -17,19 +17,24 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $password = $request->input('password');
-        $email = session('email');
-        $record = DB::table('users')
-            ->where('email', $email)
-            ->first();
+        $email = $request->input('email');
 
-        if(Hash::check($password, $record->password)) {
-            return view('/user-dashboard');
+        session()->flash('show_error_message', false);
+
+        if(Auth::attempt(['email' => $email, 'password' => $password])){
+            session()->flash('show_error_message', false);
+            return redirect('/user-dashboard');
         } else {
-            session()->flash('signin_status' , true);
+            session()->flash('show_error_message', true);
+            
             return redirect()
-                ->back();
+                ->back()
+                ->withInput();
         }
+    }
 
-     
+    public function verification()
+    {
+        return redirect('/auth/login/verification');
     }
 }

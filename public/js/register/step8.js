@@ -8,7 +8,7 @@ $('form').submit(function(e) {
         e.preventDefault();
     } else {
         $("#tax_ein_ssn_error").addClass('none');
-        localStorage.setItem('tax_ein_ssn', tax_ein_ssn);
+        // localStorage.setItem('tax_ein_ssn', tax_ein_ssn);
     }
 
     if (invitation_code == "") {
@@ -16,6 +16,8 @@ $('form').submit(function(e) {
         e.preventDefault();
     } else {
         $("#invitation_code_error").addClass('none');
-        localStorage.setItem('invitation_code', invitation_code);
+        // localStorage.setItem('invitation_code', invitation_code);
     }
+
+    localStorage.clear();
 });

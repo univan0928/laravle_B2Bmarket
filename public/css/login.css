@@ -41,9 +41,6 @@ div.row.center-element div.col-md-12 {
     z-index: 1;
 }
 
-.b-btn-add {
-
-}
 
 .button-4 {
     appearance: none;
@@ -172,7 +169,7 @@ h4 {
     background-position: -248px -35px;
 }
 .a-icon, .a-link-emphasis:after {
-    background-image: url(https://m.media-amazon.com/images/S/sash/mPGmT0r6IeTyIee.png);
+    /* background-image: url(https://m.media-amazon.com/images/S/sash/mPGmT0r6IeTyIee.png); */
     -webkit-background-size: 400px 750px;
     background-size: 400px 750px;
     background-repeat: no-repeat;
@@ -220,4 +217,49 @@ li {
 }
 .subtitle-2 {
     text-align: justify;
+}
+.checkbox-element2 {
+    display: flex;
+    align-items: center;
+}
+.checkbox-element2 span {
+    padding-left: 10px;
+}
+
+.detail, .detail:active, .detail:link, .detail:visited {
+    text-decoration: none;
+    color: #0066c0;
+}
+.detail:hover {
+    color: #ed1c24;
+    text-decoration: underline;
+}
+.a-icon-popover {
+    margin: 9px 0 0 0;
+    vertical-align: text-top;
+    width: 7px;
+    height: 5px;
+    background-position: -90px -5px;
+    opacity: .6;
+}
+.a-icon, .a-link-emphasis:after {
+    /* background-image: url(https://m.media-amazon.com/images/S/sash/mPGmT0r6IeTyIee.png); */
+    -webkit-background-size: 400px 750px;
+    background-size: 400px 750px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: top;
+}
+em, i {
+    font-style: italic;
+}
+.a-popover-trigger:hover {
+    cursor: pointer;
+}
+.hoverable {
+    cursor: pointer;
+}
+.help-tag {
+    justify-content: initial;
+    font-size: 12px !important;   
 }
