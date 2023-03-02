@@ -267,7 +267,7 @@
                             </li>
                         </ul>
                     </div>
-                </div><a class="ps-logo" href="index.html"><img src="{{asset('img/brandoe.png')}}" alt="" /></a>
+                </div><a class="ps-logo" href="{{ route('shop.index') }}"><img src="{{asset('img/brandoe.png')}}" alt="" /></a>
             </div>
             <div class="header__center">
                 <form class="ps-form--quick-search" action="index.html" method="get">
@@ -481,8 +481,17 @@
                     </div>
                     <div class="ps-block--user-header">
                         <div class="ps-block__left"><i class="icon-user"></i></div>
-                        <div class="ps-block__right"><a href="my-account.html">Login</a><a
-                                href="my-account.html">Register</a></div>
+                        @if (Auth::check())
+                            <div class="ps-block__right">
+                                <a>{{ Auth::user()->name }}</a>
+                                <div class="dropdown-content">
+                                    <a href="{{ route('user-dashboard') }}">Account</a>
+                                    <a href="{{ route('logout') }}">Logout</a>
+                                </div>
+                            </div>
+                        @else
+                            <div class="ps-block__right"><a href="{{ route('login') }}">Login</a></div>
+                        @endif
                     </div>
                 </div>
             </div>

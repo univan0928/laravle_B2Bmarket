@@ -13,6 +13,7 @@ use Illuminate\Session\Store;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Mail\OtpMail;
 use App\Models\EmailVerification;
@@ -136,18 +137,24 @@ class RegisterController extends Controller
         $email = session('email');
         $otp = rand(100000, 999999);
         // Mail::to($email)->send(new OtpMail($otp));
-
+        $content = DB::table('email_templates')
+            ->where('title', 'email-verification-otp')
+            ->first()
+            ->content;
+        $content = "$content";
+        $content = str_replace('{otp}', $otp, $content);
         $email_data = array(
             "sender"=>array("name"=>"BrandedStocklots", "email"=>"Admin@brandedstocklots.com"),
             "to"=>array(array("email"=>$email)),
             "subject"=>"Your OTP is $otp",
-            "htmlContent"=>"<p>Your OTP is $otp</p>"
+            "htmlContent"=>$content
         );
+        $api_key = env('SENDINBLUE_API_KEY');
         $email_data = json_encode($email_data);
         $headers = array(
             "accept: application/json",
             "content-type: application/json",
-            "api-key: "
+            "api-key: $api_key"
         );
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -179,10 +186,13 @@ class RegisterController extends Controller
             if($record) {
                 DB::table('email_verifications')->where('email', $email)->delete();
             }
+            $verify_email_otp_date = date('Y-m-d H:i:s', strtotime('now'));
+
             $emial_verification = new EmailVerification();
             $emial_verification->verify_code = $otp;
             $emial_verification->email = $email;
             $emial_verification->status = false;
+            $emial_verification->updated_time = $verify_email_otp_date;
             $emial_verification->save();
         } catch(Exception $e) { };
 
@@ -216,7 +226,7 @@ class RegisterController extends Controller
         $verify_email_otp_date = strtotime(date('Y-m-d H:i:s', strtotime('now')));
 
         $record = DB::table('email_verifications')->where('email', $email)->first();
-        $created_at = strtotime($record->created_at);
+        $created_at = strtotime($record->updated_time);
         $correct_email_verify_code = $record->verify_code;
 
         // CALCULATE TIME
@@ -290,7 +300,7 @@ class RegisterController extends Controller
         $verify_email_otp_date = strtotime(date('Y-m-d H:i:s', strtotime('now')));
 
         $record = DB::table('phone_verifications')->where('phone_number', $mobile_number)->first();
-        $created_at = strtotime($record->created_at);
+        $created_at = strtotime($record->updated_time);
         $correct_phone_verify_code = $record->verify_code;
 
         // CALCULATE TIME
@@ -371,6 +381,8 @@ class RegisterController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
         $mobile_number = $request->input('mobile_number');
+
+
         try {
             $user = new User();
             $user->first_last_name = $first_last_name;
@@ -408,7 +420,6 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'tax_ein_ssn' => 'required',
             'invitation_code' => 'required',
-            'business_url' => 'required',
             'file1' => 'required|file|mimes:pdf,jpeg,jpg|max:10240',
             'file2' => 'required|file|mimes:pdf,jpeg,jpg|max:10240',
         ], [
@@ -424,7 +435,6 @@ class RegisterController extends Controller
             ->withErrors($validator)
             ->withInput();
         }
-
         $file1 = $request->file('file1');
         $file2 = $request->file('file2');
 
@@ -434,7 +444,6 @@ class RegisterController extends Controller
 
 
         $tax_ein_ssn = $request->input('tax_ein_ssn');
-        $business_url = $request->input('business_url');
         $invitation_code = $request->input('invitation_code');
         $fileName1 = $request->file('file1')->hashName();
         $fileName2 = $request->file('file2')->hashName();
@@ -448,15 +457,15 @@ class RegisterController extends Controller
             ->where('email', $email)
             ->update([
                 'tax_ein_ssn' => $tax_ein_ssn,
-                'business_url' => $business_url,
                 'invitation_code' => $invitation_code,
                 'official_documents_1' => $url1,
                 'official_documents_2' => $url2,
             ]);
 
         Session::forget('email');
+        Session::forget('signup_step');
 
-        session(['signup_step' => 8]);
+        // session(['signup_step' => 8]);
 
         return redirect('/auth/register/step9');
     }
@@ -468,18 +477,24 @@ class RegisterController extends Controller
         $email = session('email');
         $otp = rand(100000, 999999);
         // Mail::to($email)->send(new OtpMail($otp));
-
+        $content = DB::table('email_templates')
+            ->where('title', 'email-verification-otp')
+            ->first()
+            ->content;
+        $content = "$content";
+        $content = str_replace('{otp}', $otp, $content);
         $email_data = array(
             "sender"=>array("name"=>"BrandedStocklots", "email"=>"Admin@brandedstocklots.com"),
             "to"=>array(array("email"=>$email)),
             "subject"=>"Your OTP is $otp",
-            "htmlContent"=>"<p>Your OTP is $otp</p>"
+            "htmlContent"=>$content
         );
         $email_data = json_encode($email_data);
+        $api_key = env('SENDINBLUE_API_KEY');
         $headers = array(
             "accept: application/json",
             "content-type: application/json",
-            "api-key: "
+            "api-key: $api_key"
         );
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -511,10 +526,13 @@ class RegisterController extends Controller
             if($record) {
                 DB::table('email_verifications')->where('email', $email)->delete();
             }
+            $verify_email_otp_date = date('Y-m-d H:i:s', strtotime('now'));
+
             $emial_verification = new EmailVerification();
             $emial_verification->verify_code = $otp;
             $emial_verification->email = $email;
             $emial_verification->status = false;
+            $emial_verification->updated_time = $verify_email_otp_date;
             $emial_verification->save();
         } catch(Exception $e) { };
 
@@ -547,12 +565,15 @@ class RegisterController extends Controller
         ->withBasicAuth($AUTH_ID, $AUTH_TOKEN)
         ->post($url, $data);
 
+        $verify_phone_otp_date = date('Y-m-d H:i:s', strtotime('now'));
+
         // CREATE NEW RECORD
         try {
             $phone_number_verification = new PhoneVerification();
             $phone_number_verification->verify_code = $otp;
             $phone_number_verification->phone_number = $mobile_number;
             $phone_number_verification->status = false;
+            $phone_number_verification->updated_time = $verify_phone_otp_date;
             $phone_number_verification->save();
         } catch(Exception $e) { };
         return redirect()->action([self::class, 'step6']);

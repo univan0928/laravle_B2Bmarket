@@ -17,28 +17,30 @@
                 <div class="ps-section__header custom-section__header">
                     <div class="row center-element">
                         <div class="col-md-12">
-                            <div class="a-section none">
+                        @if(session('show_email_error_message') == true)
+                            <div class="a-section">
                                 <div id="auth-error-message-box" class="a-box a-alert a-alert-error auth-server-side-message-box a-spacing-base" role="alert">
                                     <div class="a-box-inner a-alert-container">
-                                        <h4 class="a-alert-heading">There was a problem</h4>
+                                        <h4 class="a-alert-heading">{{ __('There was a problem')}}</h4>
                                         <i class="a-icon a-icon-alert"></i>
                                         <div class="a-alert-content">
                                             <ul class="a-unordered-list a-nostyle a-vertical a-spacing-none">
                                                 <li>
-                                                    <span class="a-list-item">Your password is incorrect</span>
+                                                    <span class="a-list-item">{{ __('We are sorry. We were not able to identify you given the information provided.')}}</span>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        @endif
                             <div class="bg-white pd-30-27">
                                 <p class="title mb-15">{{ __('Password assistance')}}</p>
                                 <p class="subtitle-2">Enter the email address or mobile phone number associated with your Amazon account.</p>
-                                <form action="{{ route('verification') }}" method="POST">
+                                <form action="{{ route('auth.login.forget_password') }}" method="POST">
                                     @csrf
                                     <label class="label-2">{{ __('Email or mobile phone number')}}</label>
-                                    <input type="email"  name="email" class="custom-form-control" />
+                                    <input type="email" name="email" class="custom-form-control" />
                                     <div class="text-danger none" id="email_error">The name field is required</div>
                                     @error('email')
                                         <div class="text-danger">{{ $message }}</div>

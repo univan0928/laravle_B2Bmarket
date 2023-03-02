@@ -41,8 +41,13 @@ div.row.center-element div.col-md-12 {
     z-index: 1;
 }
 
+div.ps-block__right {
+    display: flex;
+    align-items: center;
+}
 
 .button-4 {
+    text-align: center;
     appearance: none;
     background-color: #FAFBFC;
     border: 1px solid rgba(27, 31, 35, 0.15);
@@ -126,9 +131,7 @@ h4.a-alert-heading {
 .a-alert-error {
     border-color: #c40000;
 }
-span.a-list-item {
-    padding-left: 50px !important;
-}
+
 .a-spacing-base, .a-ws .a-ws-spacing-base {
     margin-bottom: 14px!important;
 }
@@ -143,6 +146,9 @@ span.a-list-item {
     box-shadow: 0 0 0 4px #fcf4f4 inset;
     padding-left: 63px;
 }
+div.a-alert-content {
+    padding-left: 50px;
+}
 .a-box .a-box-inner {
     border-radius: 4px;
     position: relative;
@@ -150,6 +156,14 @@ span.a-list-item {
 }
 .a-alert-error .a-alert-container .a-alert-heading {
     color: #c40000;
+}
+.tip {
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 12px !important;
+    line-height: 25px !important;
+    padding-top: 3px;
+    padding-left: 13px;
 }
 h4 {
     font-weight: 400;

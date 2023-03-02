@@ -16,3 +16,4 @@
 <script src="{{asset('plugins/gmap3.min.js')}}"></script>
 <!-- CUSTOM SCRIPTS-->
 <script src="{{asset('js/main.js')}}"></script>
+

@@ -59,7 +59,9 @@
                     <p class="link-business-text-2">{{ __('Many stock available, different categories')}}  </p>
                     <br>
                     <div class="row">
-                        <button class="account-button">{{ __('Start now')}}</button>
+                        <a href="{{route('user-dashboard')}}" id="start_now">
+                            <button class="account-button">{{ __('Start now')}}</button>
+                        </a>
                     </div>
                 </div>
             </div>

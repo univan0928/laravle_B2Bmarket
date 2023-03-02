@@ -1,0 +1,89 @@
+/* .grid-icon[data-v-72d8ec6f]:hover {
+    background: var(--c-white);
+    border: 1px solid rgba(0,0,0,.1);
+    color: #000;
+} */
+.grid-icon[data-v-72d8ec6f] {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 132px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s ease;
+    text-decoration: none;
+    overflow: hidden;
+}
+.grid-icon__content[data-v-72d8ec6f] {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: 8px;
+}
+#chat-icon {
+    background-color: transparent;
+    text-decoration: none;
+    transition: border .3s ease;
+    color: #28b351;
+    cursor: pointer;
+}
+.grid-icon__icon[data-v-72d8ec6f] {
+    height: 80px;
+    width: 80px;
+    margin: 16px auto 0;
+}
+.app-icon, .app-icon .app-icon-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app-icon {
+    position: relative;
+    height: auto;
+    transition: all .2s ease;
+}
+.app-icon.grid-icon__icon.is-ios7 img {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(172deg) brightness(103%) contrast(105%);
+}
+.app-icon img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.app-icon img, .app-icon svg {
+    position: relative;
+    transition: all .2s ease;
+}
+.grid-icon__title[data-v-72d8ec6f] {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 0 5% 8px;
+    transition: all .2s ease;
+}
+.grid-icon__title-text[data-v-72d8ec6f] {
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: rgba(51,51,51,.5);
+}
+#chatify-icon {
+    width: 100px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+div.app-icon.grid-icon__icon.is-ios7 {
+    background-color: #28b351;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 20px;
+}

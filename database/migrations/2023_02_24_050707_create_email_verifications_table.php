@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('verify_code');
             $table->string('email');
             $table->boolean('status');
+            $table->datetime('updated_time');
             $table->timestamps();
         });
     }

@@ -17,40 +17,24 @@
                 <div class="ps-section__header custom-section__header">
                     <div class="row center-element">
                         <div class="col-md-12">
-                            <!-- @if(session('signin_status')) -->
-                            <div class="a-section">
-                                <div id="auth-error-message-box" class="a-box a-alert a-alert-error auth-server-side-message-box a-spacing-base" role="alert">
-                                    <div class="a-box-inner a-alert-container">
-                                        <h4 class="a-alert-heading">There was a problem</h4>
-                                        <i class="a-icon a-icon-alert"></i>
-                                        <div class="a-alert-content">
-                                            <ul class="a-unordered-list a-nostyle a-vertical a-spacing-none">
-                                                <li>
-                                                    <span class="a-list-item">Your password is incorrect</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- @endif -->
                             <div class="bg-white pd-30-27">
                                 <p class="title mb-15">{{ __('Verification required')}}</p>
                                 <p class="subtitle-2">To continue, complete this verification step. We've sent a One Time Password (OTP) to the email <span class="subtitle-2" id="email_show"></span>. Please enter it below.</p>
-                                <form action="" method="POST">
+                                <form action="{{ route('auth.login.verification') }}" method="POST">
                                     @csrf
                                     <div class="password-tag">
                                         <label class="label-2">{{ __('Enter OTP')}}</label>
                                     </div>
-                                    <input type="password" value="{{ old('password') }}"  name="password" class="custom-form-control" />
-                                    <div class="text-danger none" id="password_error">The password field is required</div>
-                                    <!-- @error('email')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror -->
-                                    
+                                    <input type="verify_code" value="{{ old('verify_code') }}"  name="verify_code" class="custom-form-control" />
+                                    <div class="text-danger none" id="verify_code_error">The OTP field is required</div>
+                                    @if (session()->has('verify_code_error'))
+                                        <div class="text-danger" id="verify_code_error">
+                                            {{ session('verify_code_error') }}
+                                        </div>
+                                    @endif
                                     <button type="submit" class="b-btn mt-15 mb-15">{{ __('Continue')}}</button>
                                     <div class="center">
-                                        <a href="{{ route('sendEmail') }}" class="link-big">{{ __('Resend OTP')}}</a>    
+                                        <a href="{{ route('auth.login.verification.resendEmail') }}" class="link-big">{{ __('Resend OTP')}}</a>    
                                     </div>
                                     <div class="left">
                                         <span class="link-big hoverable">{{ __('I need more help')}}</span>    

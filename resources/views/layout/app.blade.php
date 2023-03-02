@@ -39,6 +39,10 @@
     
     <!-- CUSTOM JS -->
     @yield('custom_js')
+
+    @if(Auth::check())
+        @include('layout.components.chat_icon')
+    @endif
 </body>
 
 </html>

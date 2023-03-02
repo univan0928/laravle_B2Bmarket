@@ -36,7 +36,7 @@
                             @endif
                             <div class="bg-white pd-30-27">
                                 <p class="title mb-15">{{ __('Sign in')}}</p>
-                                <form action="{{ route('login') }}" method="POST">
+                                <form action="{{ route('auth.login.index') }}" method="POST">
                                     @csrf
                                     <label class="label-2">{{ __('Email or mobile phone number')}}</label>
                                     <input type="email" value="{{ old('email') }}"  name="email" class="custom-form-control" />
@@ -46,7 +46,7 @@
                                     @enderror
                                     <div class="password-tag">
                                         <label class="label-2">{{ __('Password')}}</label>
-                                        <a href="{{ route('forget_password') }}" class="link-normal lh-1">Forget password?</a>
+                                        <a href="{{ route('auth.login.forget_password') }}" class="link-normal lh-1">Forget password?</a>
                                     </div>
                                     <input type="password" value="{{ old('password') }}"  name="password" class="custom-form-control" />
                                     <div class="text-danger none" id="password_error">The password field is required</div>
@@ -69,7 +69,7 @@
                             <div class="a-divider a-divider-break"><h5 aria-level="5">New to Amazon?</h5></div>
                             
                             <div class="button-wrapper" data-tippy-content="Click to copy button 4">
-                               <button class="button-4" role="button">Register now</button>
+                               <a href="{{ route('auth.register.step1') }}" class="button-4" role="button" >Register now</a>
                             </div>
                         </div>
                     </div>

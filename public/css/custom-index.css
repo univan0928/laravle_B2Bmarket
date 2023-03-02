@@ -14,6 +14,12 @@
   padding-bottom: 89px;
 }
 
+div.ps-block__right {
+  display: flex;
+  align-items: center;
+}
+
+
 .ps-banner--market-1 h5 {
   color: red;
   font-weight: 400;
@@ -215,6 +221,33 @@ p.sale-title strong {
 
 
 
+.ps-block__right {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 80px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 12px;
+  z-index: 1;
+  top: 36px;
+}
+.dropdown-content a {
+  color: black;
+}
+.dropdown-content a:hover {
+  color: #ed1c24 !important;
+}
+
+.ps-block__right:hover .dropdown-content {
+  display: block;
+}
+
+
 @media only screen and (max-width: 600px) {
 
 .navigation__extra > li a {
@@ -235,3 +268,4 @@ p.sale-title strong {
   color: inherit;
 }
 }
+

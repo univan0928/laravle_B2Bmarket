@@ -39,9 +39,9 @@ return [
         'public' => [
             'driver' => 'local',
             // 'root' => storage_path('app/public'),
-            'root' => public_path('app/public'),
+            'root' => public_path('/'),
             // 'url' => env('APP_URL').'/storage',
-            'url' => env('APP_URL').'/uploads',
+            'url' => env('APP_URL'),
             'visibility' => 'public',
             // 'throw' => false,
         ],

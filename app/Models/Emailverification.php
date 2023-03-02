@@ -9,7 +9,7 @@ class EmailVerification extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['verify_code', 'email', 'status'];
+    protected $fillable = ['verify_code', 'email', 'status', 'updated_time'];
 
     
 }

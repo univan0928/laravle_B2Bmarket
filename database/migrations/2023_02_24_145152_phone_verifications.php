@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('verify_code');
             $table->string('phone_number');
             $table->boolean('status');
+            $table->datetime('updated_time');
             $table->timestamps();
         });
     }
@@ -29,3 +30,4 @@ return new class extends Migration
         //
     }
 };
+

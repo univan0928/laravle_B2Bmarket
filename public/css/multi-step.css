@@ -958,6 +958,10 @@ button.accordion.active i::before {
   padding-top: 20px;
 }
 
+#start_now {
+  margin: 0 auto;
+}
+
 .bd-b-blue {
   border-bottom: solid 4px #007cb6;
 }
