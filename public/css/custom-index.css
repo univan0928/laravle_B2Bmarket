@@ -238,6 +238,7 @@ p.sale-title strong {
 }
 .dropdown-content a {
   color: black;
+  padding: 3px 0px;
 }
 .dropdown-content a:hover {
   color: #ed1c24 !important;

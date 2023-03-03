@@ -54,17 +54,16 @@
                                     <button type="submit" class="b-btn mt-15 mb-15">{{ __('Sign in')}}</button>
                                 </form>
                                 <p class="para-normal">By continuing, you agree to BrandedStocklots's <a href="#">{{ __('Conditions of Use')}}</a> and <a href="#">Privacy Notice</a>.</p>
-                                <div class="checkbox-element2">
+                                <!-- <div class="checkbox-element2">
                                     <input type="checkbox" name="receive_message">
                                     <span>{{ __('Keep me signed in.')}}
                                         <span class="a-declarative" data-action="a-popover" data-csa-c-type="widget" data-csa-c-func-deps="aui-da-a-popover" data-a-popover="{&quot;closeButtonLabel&quot;:&quot;&quot;,&quot;activate&quot;:&quot;onclick&quot;,&quot;header&quot;:&quot;\&quot;Keep Me Signed In\&quot; Checkbox&quot;,&quot;inlineContent&quot;:&quot;\u003cp>Choosing \&quot;Keep me signed in\&quot; reduces the number of times you're asked to Sign-In on this device.\u003c\/p>\n\u003cp>To keep your account secure, use this option only on your personal devices.\u003c\/p>&quot;}" data-csa-c-id="sbdwp4-momo5p-lwd90x-lqyy04">
                                             <a id="remember_me_learn_more_link" href="javascript:void(0)" role="button" class="a-popover-trigger a-declarative detail">
                                             Details
-                                                <!-- <i class="a-icon a-icon-popover"></i> -->
                                             </a>
                                         </span>
                                     </span>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="a-divider a-divider-break"><h5 aria-level="5">New to Amazon?</h5></div>
                             
